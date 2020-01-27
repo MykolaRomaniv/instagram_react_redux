@@ -12,6 +12,11 @@ const Posts = () => {
                 avatar={avatar}
                 img={img}
                 liked />
+                            <Post 
+                name={'Basya'}
+                avatar={avatar}
+                img={img}
+                liked />
         </div>
     )
 }

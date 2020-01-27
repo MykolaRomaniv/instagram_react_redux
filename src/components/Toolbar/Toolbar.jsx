@@ -1,9 +1,13 @@
 import React from "react";
+import classes from "./Toolbar.module.scss";
+import instaLogo from "../../assets/instagram.png";
 
 const Toolbar = () => {
   return (
-    <header>
-      <div>Istagram</div>
+    <header className={classes.Toolbar}>
+      <div>
+        <img className={classes.title} src={instaLogo} alt="" />
+      </div>
     </header>
   );
 };

@@ -1,0 +1,13 @@
+.Toolbar {
+    background-color: #fff;
+    text-align: center;
+    height: 77px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+
+    .title {
+        padding-top: 15px;
+    }
+}
