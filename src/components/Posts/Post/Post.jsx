@@ -1,11 +1,19 @@
-import React from "react";
-import likeIcon from "../../../assets/like.svg";
-import likedIcon from "../../../assets/liked.svg";
-import classes from "./Post.module.scss";
+import React from 'react';
+import likeIcon from '../../../assets/like.svg';
+import likedIcon from '../../../assets/liked.svg';
+import classes from './Post.module.scss';
 
 const Post = props => {
   let liked = props.isLiked ? likeIcon : likedIcon;
 
+  let comments = [];
+  props.comments.forEach((comment, user) =>
+    comments.push(
+      <li key={user} className={classes.comment}>
+        <span style={{ fontWeight: 'bold' }}>{user}</span> {comment}
+      </li>
+    )
+  );
   return (
     <div className={classes.Post}>
       <div className={classes.user}>
@@ -20,10 +28,10 @@ const Post = props => {
         <div>{props.likesNumber}</div>
       </div>
       <div>
-
-        <form className={classes.commentSection} action="#" method="post">
+        <ul className={classes.commentList} >{comments}</ul>
+        <form className={classes.commentForm} action="#" method="post">
           <textarea
-            className={classes.comment}
+            className={classes.commentInput}
             placeholder="Add a comment..."
           ></textarea>
           <button className={classes.postBtn}>Post</button>

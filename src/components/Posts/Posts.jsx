@@ -1,16 +1,19 @@
-import React from "react";
-import Post from "./Post/Post";
+import React from 'react';
+import Post from './Post/Post';
+import avatar from '../../assets/avatar.jpg';
+import img from '../../assets/cat.jpeg';
 
-import avatar from "../../assets/avatar.jpg";
-import img from "../../assets/cat.jpeg";
-
-const COMMENTS = ["test", "testtest", "adsadwqdsadqw"];
+const COMMENTS = new Map([
+  ['test', 'testtest'],
+  ['Petro', 'tralalala'],
+  ['Lol', 'kek']
+]);
 
 const Posts = () => {
   return (
     <>
       <Post
-        name={"Basya"}
+        name={'Basya'}
         avatar={avatar}
         img={img}
         isLiked
@@ -18,7 +21,7 @@ const Posts = () => {
         comments={COMMENTS}
       />
       <Post
-        name={"Basya"}
+        name={'Basya'}
         avatar={avatar}
         img={img}
         isLiked
