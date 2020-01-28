@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Post from './Post/Post';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../redux/types';
 import axios from 'axios';
+
+import Post from './Post';
 
 const COMMENTS = new Map([
   ['test', 'testtest'],

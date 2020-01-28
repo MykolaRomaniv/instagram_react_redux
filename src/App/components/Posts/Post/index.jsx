@@ -1,6 +1,7 @@
 import React from 'react';
-import likeIcon from '../../../assets/like.svg';
-import likedIcon from '../../../assets/liked.svg';
+
+import likeIcon from '../../../../assets/like.svg';
+import likedIcon from '../../../../assets/liked.svg';
 import classes from './Post.module.scss';
 
 const Post = props => {
