@@ -1,0 +1,70 @@
+.flexLeft {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 16px;
+}
+
+.Post {
+    width: 60%;
+    margin: auto;
+    margin-bottom: 60px;
+    border: 1px solid #dbdbdb;
+
+    .user {
+        @extend .flexLeft;
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .name {
+            margin-left: 16px;
+        }
+    }
+
+    .img {
+        width: 100%;
+    }
+
+    .likes {
+        @extend .flexLeft;
+        padding: 0;
+
+        .heart {
+            padding: 8px;
+        }
+    }
+    
+    .commentSection {
+        display: flex;
+
+        .comment {
+            box-sizing: border-box;
+            height: 40px;
+            width: 90%;
+            border: 0;
+            background: 0 0;
+            resize: none;
+
+            &:focus {
+                outline: 0;
+            }
+        }
+    
+        .postBtn {
+            align-self: flex-start;
+            width: 10%;
+            padding: 4px;
+            box-sizing: border-box;
+            border: 0;
+            color: #3897f0;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            background: 0 0;
+        }
+    }
+}
