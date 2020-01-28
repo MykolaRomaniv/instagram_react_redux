@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Post from './Post/Post';
-import avatar from '../../assets/avatar.jpg';
-import img from '../../assets/cat.jpeg';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions';
+import axios from 'axios';
 
 const COMMENTS = new Map([
   ['test', 'testtest'],
@@ -9,27 +10,63 @@ const COMMENTS = new Map([
   ['Lol', 'kek']
 ]);
 
-const Posts = () => {
-  return (
-    <>
-      <Post
-        name={'Basya'}
-        avatar={avatar}
-        img={img}
-        isLiked
-        likesNumber="123442"
-        comments={COMMENTS}
-      />
-      <Post
-        name={'Basya'}
-        avatar={avatar}
-        img={img}
-        isLiked
-        likesNumber="23423534"
-        comments={COMMENTS}
-      />
-    </>
-  );
+/**
+ *   
+    id: '56',
+    createdAt: '2019-07-22T00:30:10.777Z',
+    imageUrl: 'http://lorempixel.com/640/480/cats',
+    likes: 63814,
+    userName: 'Blanche Murray',
+    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/itstotallyamy/128.jpg',
+    description: 'Awesome Steel Chicken Lake'
+ */
+
+class Posts extends Component {
+  componentDidMount = () => {
+    this.props.getPosts();
+  };
+
+  render() {
+    let posts = <p>Loading.....</p>;
+    if (this.props.posts) {
+      posts = this.props.posts.map(post => (
+        <Post
+          key={post.id}
+          creationDate={post.createdAt}
+          img={post.imageUrl}
+          likesNumber={post.likes}
+          name={post.userName}
+          avatar={post.avatar}
+          description={post.description}
+          isLiked
+          comments={COMMENTS}
+        />
+      ));
+  
+    }
+    return <>{posts}</>;
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    posts: state.posts
+  };
 };
 
-export default Posts;
+const mapDispatchToProps = dispatch => {
+  return {
+    getPosts: () => {  
+      axios.get('https://5b27755162e42b0014915662.mockapi.io/api/v1/posts')
+      .then(response => {
+          console.log('responsed');
+          dispatch({type: actionTypes.UPDATE_POSTS, posts: response.data});
+      })
+      .catch(error => {
+          console.error('Can`t get data from server');
+      });
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
