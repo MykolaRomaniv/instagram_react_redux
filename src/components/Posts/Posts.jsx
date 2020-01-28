@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Post from './Post/Post';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../store/actions';
+import * as actionTypes from '../../redux/types';
 import axios from 'axios';
 
 const COMMENTS = new Map([
