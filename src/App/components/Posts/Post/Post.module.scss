@@ -38,6 +38,7 @@
         @extend .paddings;
 
         .heart {
+            cursor: pointer;
             margin: -8px;
             padding: 8px;
         }
