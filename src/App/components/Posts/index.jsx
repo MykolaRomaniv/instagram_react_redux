@@ -42,6 +42,7 @@ class Posts extends Component {
               description={post.description}
               createdAt={post.createdAt}
               comments={COMMENTS}
+              
             />
           ))
         ) : (

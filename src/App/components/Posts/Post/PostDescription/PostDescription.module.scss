@@ -1,0 +1,10 @@
+@import '../shared.module.scss';
+
+.description {
+    @extend .paddings;
+    margin-top: 4px;
+
+    .userName{
+        font-weight: bold;
+    }
+}

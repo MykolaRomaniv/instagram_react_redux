@@ -7,7 +7,8 @@ import IconBtns from './IconBtns';
 import PostImage from './PostImage';
 import Comments from './Comments';
 import CommentInput from './CommentInput';
-// import CreateDate from './CreatedDate';
+import CreateDate from './CreatedDate';
+import PostDescription from './PostDescription';
 
 const Post = props => {
     return (
@@ -15,8 +16,9 @@ const Post = props => {
         <PostHeader avatar={props.avatar} name={props.name} />
         <PostImage img={props.img} />
         <IconBtns likesNumber={props.likesNumber} />
+        <PostDescription desc={props.description} userName={props.name} />
         <Comments comments={props.comments} />
-        {/* <CreateDate createdAt={props.createdAt} /> */}
+        <CreateDate createdAt={props.createdAt} />
         <CommentInput />
       </div>
     );
