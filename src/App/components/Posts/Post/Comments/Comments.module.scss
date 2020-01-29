@@ -1,0 +1,6 @@
+@import '../shared.module.scss';
+
+.commentList {
+    list-style: none;
+    @extend .paddings;
+}

@@ -1,0 +1,36 @@
+@import '../shared.module.scss';
+
+.commentForm {
+    display: flex;
+    justify-content: space-between;
+    @extend .paddings;
+    padding-top: 16px;
+    border-top: 1px solid #efefef;
+
+    .commentInput {
+        width: 100%;
+        font-size: inherit;
+        box-sizing: border-box;
+        height: 40px;
+        border: 0;
+        background: 0 0;
+        resize: none;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    .postBtn {
+        font-size: inherit;
+        align-self: flex-start;
+        padding: 4px;
+        box-sizing: border-box;
+        border: 0;
+        color: #3897f0;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        background: 0 0;
+    }
+}

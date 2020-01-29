@@ -1,0 +1,23 @@
+@import '../shared.module.scss';
+
+.iconBtns {
+    @extend .paddings;
+    display: flex;
+    justify-content: space-between;
+    
+    .iconBtn{
+        cursor: pointer;
+        padding: 8px;
+    }
+
+    .heart {
+        @extend .iconBtn;
+        margin-left: -8px;
+    }
+}
+
+.likeNumber {
+    @extend .paddings;
+    width: 100%;
+    font-weight: bold;
+}

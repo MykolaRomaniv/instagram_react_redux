@@ -1,0 +1,26 @@
+@import '../shared.module.scss';
+
+.postHeader {
+    @extend .paddings;
+    display: flex;
+    justify-content: space-between;
+
+    .user {
+        @extend .flexLeft;
+        padding: 16px 0;
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+        }
+
+        .name {
+            @extend .paddings;
+        }
+    }
+    
+    .dotMenu {
+        cursor: pointer;
+    }
+}

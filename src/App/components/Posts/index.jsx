@@ -40,7 +40,7 @@ class Posts extends Component {
               name={post.userName}
               avatar={post.avatar}
               description={post.description}
-              isLiked
+              createdAt={post.createdAt}
               comments={COMMENTS}
             />
           ))
