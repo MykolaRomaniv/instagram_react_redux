@@ -5,6 +5,10 @@
     padding: 16px;
 }
 
+.paddings {
+    padding: 0 16px;
+}
+
 .Post {
     width: 60%;
     margin: auto;
@@ -21,7 +25,7 @@
         }
 
         .name {
-            margin-left: 16px;
+            @extend .paddings;
         }
     }
 
@@ -31,28 +35,38 @@
 
     .likes {
         @extend .flexLeft;
-        padding: 0;
+        @extend .paddings;
 
         .heart {
+            margin: -8px;
             padding: 8px;
         }
     }
-    
+
+
+    .likeNumber {
+        @extend .paddings;
+        width: 100%;
+        font-weight: bold;
+    }
+
     .commentList {
         list-style: none;
-        padding-left: 16px;
-        .comment {
-            
-        }
+        @extend .paddings;
     }
 
     .commentForm {
         display: flex;
+        justify-content: space-between;
+        @extend .paddings;
+        padding-top: 16px;
+        border-top: 1px solid #efefef;
 
         .commentInput {
+            width: 100%;
+            font-size: inherit;
             box-sizing: border-box;
             height: 40px;
-            width: 90%;
             border: 0;
             background: 0 0;
             resize: none;
@@ -61,10 +75,10 @@
                 outline: 0;
             }
         }
-    
+
         .postBtn {
+            font-size: inherit;
             align-self: flex-start;
-            width: 10%;
             padding: 4px;
             box-sizing: border-box;
             border: 0;

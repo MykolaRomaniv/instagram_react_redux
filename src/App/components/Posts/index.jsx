@@ -28,24 +28,27 @@ class Posts extends Component {
   };
 
   render() {
-    let posts = <p>Loading.....</p>;
-    if (this.props.posts) {
-      posts = this.props.posts.map(post => (
-        <Post
-          key={post.id}
-          creationDate={post.createdAt}
-          img={post.imageUrl}
-          likesNumber={post.likes}
-          name={post.userName}
-          avatar={post.avatar}
-          description={post.description}
-          isLiked
-          comments={COMMENTS}
-        />
-      ));
-  
-    }
-    return <>{posts}</>;
+    return (
+      <>
+        {this.props.posts && this.props.posts.length ? (
+          this.props.posts.map(post => (
+            <Post
+              key={post.id}
+              creationDate={post.createdAt}
+              img={post.imageUrl}
+              likesNumber={post.likes}
+              name={post.userName}
+              avatar={post.avatar}
+              description={post.description}
+              isLiked
+              comments={COMMENTS}
+            />
+          ))
+        ) : (
+          <p>Loading.....</p>
+        )}
+      </>
+    );
   }
 }
 
@@ -57,15 +60,16 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPosts: () => {  
-      axios.get('https://5b27755162e42b0014915662.mockapi.io/api/v1/posts')
-      .then(response => {
+    getPosts: () => {
+      axios
+        .get('https://5b27755162e42b0014915662.mockapi.io/api/v1/posts')
+        .then(response => {
           console.log('responsed');
-          dispatch({type: actionTypes.UPDATE_POSTS, posts: response.data});
-      })
-      .catch(error => {
+          dispatch({ type: actionTypes.UPDATE_POSTS, posts: response.data });
+        })
+        .catch(error => {
           console.error('Can`t get data from server');
-      });
+        });
     }
   };
 };

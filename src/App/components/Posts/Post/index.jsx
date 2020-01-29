@@ -26,8 +26,8 @@ const Post = props => {
       </div>
       <div className={classes.likes}>
         <img className={classes.heart} src={liked} alt="" />
-        <div>{props.likesNumber}</div>
       </div>
+      <div className={classes.likeNumber}>{props.likesNumber} likes</div>
       <div>
         <ul className={classes.commentList} >{comments}</ul>
         <form className={classes.commentForm} action="#" method="post">
