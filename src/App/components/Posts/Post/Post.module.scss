@@ -2,12 +2,13 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 16px;
 }
 
 .paddings {
     padding: 0 16px;
 }
+
+
 
 .Post {
     width: 60%;
@@ -15,17 +16,24 @@
     margin-bottom: 60px;
     border: 1px solid #dbdbdb;
 
-    .user {
-        @extend .flexLeft;
+    .postHeader {
+        @extend .paddings;
+        display: flex;
+        justify-content: space-between;
 
-        .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-        }
+        .user {
+            @extend .flexLeft;
+            padding: 16px 0;
 
-        .name {
-            @extend .paddings;
+            .avatar {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+            }
+
+            .name {
+                @extend .paddings;
+            }
         }
     }
 
@@ -34,15 +42,21 @@
     }
 
     .likes {
-        @extend .flexLeft;
         @extend .paddings;
-
+        display: flex;
+        justify-content: space-between;
+        
         .heart {
+            @extend .IconBtn;
+            margin-left: -8px;
+        }
+    
+        .IconBtn{
             cursor: pointer;
-            margin: -8px;
             padding: 8px;
         }
     }
+
 
 
     .likeNumber {
