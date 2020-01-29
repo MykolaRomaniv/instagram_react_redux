@@ -1,16 +1,24 @@
 import * as actionTypes from './types';
 
 const initialState = {
-    posts: []
+  posts: []
 };
 
 const reducer = (state = initialState, action) => {
-    if (action.type === actionTypes.UPDATE_POSTS) {
-        return {
-            posts: action.posts
-        }
-    }
-    return state;
+  switch (action.type) {
+    case actionTypes.LOADING_POSTS:
+      console.log('Loading');
+      return {
+        post: []
+      }
+    case actionTypes.UPDATE_POSTS:
+      console.log('Posts recived')
+      return {
+        posts: action.posts
+      }
+    default:
+      return state
+  }
 }
 
 export default reducer;
