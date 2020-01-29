@@ -5,12 +5,6 @@ import axios from 'axios';
 import * as actionTypes from '../../redux/types';
 import Post from './Post';
 
-const COMMENTS = new Map([
-  ['test', 'testtest'],
-  ['Petro', 'tralalala'],
-  ['Lol', 'kek']
-]);
-
 /**
  *   
     id: '56',
@@ -20,6 +14,7 @@ const COMMENTS = new Map([
     userName: 'Blanche Murray',
     avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/itstotallyamy/128.jpg',
     description: 'Awesome Steel Chicken Lake'
+    comments: ["asdad", "adsda"] // or "qwerty"
  */
 
 class Posts extends Component {
@@ -41,8 +36,7 @@ class Posts extends Component {
               avatar={post.avatar}
               description={post.description}
               createdAt={post.createdAt}
-              comments={COMMENTS}
-              
+              comments={post.comments}
             />
           ))
         ) : (
