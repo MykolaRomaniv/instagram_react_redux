@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionTypes from '../../redux/types';
 import axios from 'axios';
 
+import * as actionTypes from '../../redux/types';
 import Post from './Post';
 
 const COMMENTS = new Map([
@@ -51,7 +51,7 @@ class Posts extends Component {
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts
+    posts: state.posts.posts
   };
 };
 
