@@ -3,4 +3,8 @@
 .commentList {
     list-style: none;
     @extend .paddings;
+    width: 100%;
+    .comment {
+        padding: 0 8px;
+    }
 }

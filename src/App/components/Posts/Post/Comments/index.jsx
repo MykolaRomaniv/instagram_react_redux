@@ -10,15 +10,15 @@ const comments = props => {
     } else {
       comments = props.comments.map((comment, index) => {
         return (
-          <li key={index} className={classes.comment}>
+          <div key={index} className={classes.comment}>
             {comment}
-          </li>
+          </div>
         );
       });
     }
   }
 
-  return <ul className={classes.commentList}>{comments}</ul>;
+  return <div className={classes.commentList}>{comments}</div>;
 };
 
 export default comments;
