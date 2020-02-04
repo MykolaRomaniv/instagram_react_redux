@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
+import AddBoxIcon from '@material-ui/icons/AddBox';
+import Modal from '../UI/Modal';
 
 import classes from './Toolbar.module.scss';
 import instaLogo from '../../../assets/instagram.png';
+import AddPostForm from '../AddPostForm/index';
 
-const Toolbar = () => {
-  return (
-    <header className={classes.Toolbar}>
-      <div>
+class Toolbar extends Component {
+  state = {
+    open: false
+  };
+
+  toggleOpenHandler = () => {
+    this.setState({
+      open: !this.state.open
+    });
+  };
+
+  render() {
+    return (
+      <header className={classes.Toolbar}>
+        <Modal show={this.state.open} modalClosed={this.toggleOpenHandler} >
+          <AddPostForm clicked={this.toggleOpenHandler} />
+        </Modal>
         <img className={classes.title} src={instaLogo} alt="" />
-      </div>
-    </header>
-  );
-};
+        <AddBoxIcon
+          onClick={this.toggleOpenHandler}
+          className={classes.addBtn}
+          fontSize="large"
+        />
+      </header>
+    );
+  }
+}
 
 export default Toolbar;

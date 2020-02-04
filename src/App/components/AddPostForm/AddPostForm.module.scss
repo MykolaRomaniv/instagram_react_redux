@@ -1,0 +1,19 @@
+.Form {
+    background: #fafafa;
+    display: flex;
+    flex-flow: column;
+
+    .photo {
+        margin: 16px;
+    }
+
+    .description {
+        resize: none;
+        height: 100px;
+        margin: 16px;
+    }
+
+    .saveBtn {
+        align-self: center;
+    }
+}

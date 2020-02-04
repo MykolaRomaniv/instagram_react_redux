@@ -26,13 +26,12 @@ const reducer = (state = initialState, action) => {
         posts: updatedPosts
       };
     case actionTypes.ADD_POST:
-      const newPosts = [
-        ...state.posts.slice(0, action.payload.postId),
-        action.payload.post,
-        ...state.posts.slice(action.postId)
-      ];
+      
+      let newPosts = state.posts.slice();
+      newPosts.splice(action.payload.postIndex, 0, action.payload.post);
+      
       return {
-        ...this.state,
+        ...state,
         posts: newPosts
       };
     default:

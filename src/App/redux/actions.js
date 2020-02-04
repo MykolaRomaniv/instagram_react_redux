@@ -55,26 +55,35 @@ export const deletePost = (postId) => {
   };
 };
 
-const add = postId => {
+const add = (post, postIndex) => {
   return {
     type: actionTypes.ADD_POST,
     payload: {
-      postId: postId
+      post: post,
+      postIndex: postIndex
     }
   };
 };
 
-export const addPost = postId => {
+export const addPost = (post, postIndex = 0) => {
   return dispatch => {
     console.log('Adding posts');
-
+    const newPost = {
+      createAt: new Date(),
+      imageUrl: post.photo,
+      likes: 0,
+      description: post.description
+    };
+    console.log(newPost)
     axios
-      .post('/posts')
+      .post('/posts', newPost)
       .then(res => {
-        dispatch(add(postId));
+        console.log(res.data)
+        dispatch(add(res.data, postIndex));
       })
       .catch(error => {
         console.error('Can`t add post', error);
       });
   };
 };
+
