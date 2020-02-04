@@ -7,13 +7,13 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOADING_POSTS:
-      console.log('Loading');
       return {
+        ...state,
         post: []
       }
     case actionTypes.UPDATE_POSTS:
-      console.log('Posts recived')
       return {
+        ...state,
         posts: action.posts
       }
     default:

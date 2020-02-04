@@ -59,7 +59,6 @@ const mapDispatchToProps = dispatch => {
       axios
         .get('/posts')
         .then(response => {
-          console.log('responsed');
           dispatch({ type: actionTypes.UPDATE_POSTS, posts: response.data });
         })
         .catch(error => {
