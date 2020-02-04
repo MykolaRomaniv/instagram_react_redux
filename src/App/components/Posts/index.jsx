@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import axios from '../../../services/axios';
 
 import * as actionTypes from '../../redux/types';
 import Post from './Post';
@@ -57,13 +57,13 @@ const mapDispatchToProps = dispatch => {
   return {
     getPosts: () => {
       axios
-        .get('https://5b27755162e42b0014915662.mockapi.io/api/v1/posts')
+        .get('/posts')
         .then(response => {
           console.log('responsed');
           dispatch({ type: actionTypes.UPDATE_POSTS, posts: response.data });
         })
         .catch(error => {
-          console.error('Can`t get data from server');
+          console.error('Can`t get data from server', error);
         });
     }
   };
