@@ -9,12 +9,12 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOADING_POSTS:
       return {
         ...state,
-        post: []
+        posts: []
       }
     case actionTypes.UPDATE_POSTS:
       return {
         ...state,
-        posts: action.posts
+        posts: action.payload.posts
       }
     default:
       return state

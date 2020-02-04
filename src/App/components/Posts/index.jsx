@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from '../../../services/axios';
 
-import * as actionTypes from '../../redux/types';
 import Post from './Post';
+import * as actions from '../../redux/actions';
 
 /**
  *   
@@ -55,16 +54,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPosts: () => {
-      axios
-        .get('/posts')
-        .then(response => {
-          dispatch({ type: actionTypes.UPDATE_POSTS, posts: response.data });
-        })
-        .catch(error => {
-          console.error('Can`t get data from server', error);
-        });
-    }
+    getPosts: () => dispatch( actions.getData())
   };
 };
 
