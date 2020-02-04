@@ -13,7 +13,7 @@ import PostDescription from './PostDescription';
 const Post = props => {
     return (
       <div className={classes.Post}>
-        <PostHeader avatar={props.avatar} name={props.name} />
+        <PostHeader avatar={props.avatar} name={props.name} id={props.id} />
         <PostImage img={props.img} />
         <IconBtns likesNumber={props.likesNumber} />
         <PostDescription desc={props.description} userName={props.name} />

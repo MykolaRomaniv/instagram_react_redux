@@ -1,7 +1,9 @@
 import React from 'react';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
+import { connect } from 'react-redux';
 
 import classes from './PostHeader.module.scss';
-import dotMenu from '../../../../../assets/dotMenu.svg';
+import { deletePost } from '../../../../redux/actions';
 
 const postHeader = props => {
   return (
@@ -10,9 +12,18 @@ const postHeader = props => {
         <img className={classes.avatar} src={props.avatar} alt="avatar" />
         <div className={classes.name}>{props.name}</div>
       </div>
-      <img className={classes.dotMenu} src={dotMenu} alt="dotmenu"></img>
+      <DeleteOutlinedIcon
+        className={classes.deleteIcon}
+        onClick={() => props.delClicked(props.id)}
+      />
     </div>
   );
 };
 
-export default postHeader;
+const mapDispatchToProps = dispatch => {
+  return {
+    delClicked: postId => dispatch(deletePost(postId))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(postHeader);

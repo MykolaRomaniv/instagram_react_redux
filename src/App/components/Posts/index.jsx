@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Post from './Post';
 import * as actions from '../../redux/actions';
@@ -18,7 +19,7 @@ import * as actions from '../../redux/actions';
 
 class Posts extends Component {
   componentDidMount = () => {
-    this.props.getPosts();
+    this.props.actions.getPosts();
   };
 
   render() {
@@ -28,6 +29,7 @@ class Posts extends Component {
           this.props.posts.map(post => (
             <Post
               key={post.id}
+              id={post.id}
               creationDate={post.createdAt}
               img={post.imageUrl}
               likesNumber={post.likes}
@@ -54,7 +56,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPosts: () => dispatch( actions.getData())
+    actions: bindActionCreators(actions, dispatch)
   };
 };
 
