@@ -32,7 +32,7 @@ const Post = props => {
         <PostDescription desc={props.post.description} userName={props.post.userName} />
         <Comments comments={props.post.comments} />
         <CreateDate createdAt={props.post.createdAt} />
-        <CommentInput />
+        <CommentInput post={props.post} />
       </div>
     );
 }

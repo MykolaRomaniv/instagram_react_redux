@@ -42,6 +42,21 @@ const reducer = (state = initialState, action) => {
         ...state,
         posts: posts
       };
+    case actionTypes.ADD_COMMENT: 
+      // const posts = state.posts.map(item => {
+      //   return item.id === action.payload.post.id
+      //     ? { ...action.payload.post }
+      //     : item;
+      // });
+      console.log('ku', action.payload);
+      return {
+        ...state,
+        posts: state.posts.map(item => {
+          return item.id === action.payload.post.id
+            ? { ...action.payload.post }
+            : item;
+        })
+      };
     default:
       return state;
   }

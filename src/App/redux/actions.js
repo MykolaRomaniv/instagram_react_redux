@@ -1,5 +1,5 @@
 import * as actionTypes from './types';
-import axios from '../../services/axios';
+import axios from '../services/axios';
 
 export const getPosts = () => dispatch => {
   dispatch({
@@ -87,6 +87,18 @@ export const addLike = (post, likes) => {
     type: actionTypes.TOGGLE_LIKE,
     payload: {
       post: {...post, likes: likes}
+    }
+  }
+}
+
+export const addComment = (post, comment) => {
+  const newArray = post.comments.slice();
+    newArray.push(comment);
+
+  return {
+    type: actionTypes.ADD_COMMENT,
+    payload: {
+      post: {...post, comments: newArray}
     }
   }
 }
