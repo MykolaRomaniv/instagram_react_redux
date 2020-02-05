@@ -14,12 +14,7 @@ class Posts extends Component {
     return (
       <>
         {this.props.posts && this.props.posts.length ? (
-          this.props.posts.map(post => (
-            <Post
-              key={post.id}
-              post={post}
-            />
-          ))
+          this.props.posts.map(post => <Post key={post.id} post={post} />)
         ) : (
           <p>Loading.....</p>
         )}
@@ -34,10 +29,8 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

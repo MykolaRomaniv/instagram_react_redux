@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import classes from './AddPostForm.module.scss';
-import { connect } from 'react-redux';
-import { addPost } from '../../redux/actions';
+import * as actions from '../../redux/actions';
 
 function blobToDataURL(blob) {
   return new Promise((fulfill, reject) => {
@@ -48,7 +49,7 @@ class AddPostForm extends Component {
           onChange={this.descriptionChangeHandler}
         />
         <button
-          onClick={() => this.props.addPost(this.state)}
+          onClick={() => this.props.actions.addPost(this.state)}
           className={classes.saveBtn}
         >
           Save
@@ -58,10 +59,8 @@ class AddPostForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addPost: (post, postIndex) => dispatch(addPost(post, postIndex))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
 
 export default connect(null, mapDispatchToProps)(AddPostForm);

@@ -1,9 +1,10 @@
 import React from 'react';
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import classes from './PostHeader.module.scss';
-import { deletePost } from '../../../../redux/actions';
+import * as actions from '../../../../redux/actions';
 
 const postHeader = props => {
   return (
@@ -14,16 +15,14 @@ const postHeader = props => {
       </div>
       <DeleteOutlinedIcon
         className={classes.deleteIcon}
-        onClick={() => props.delClicked(props.id)}
+        onClick={() => props.actions.deletePost(props.id)}
       />
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    delClicked: postId => dispatch(deletePost(postId))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
 
 export default connect(null, mapDispatchToProps)(postHeader);

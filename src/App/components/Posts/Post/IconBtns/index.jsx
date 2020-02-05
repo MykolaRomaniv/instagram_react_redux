@@ -51,10 +51,8 @@ class IconBtns extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(actions, dispatch)
+});
 
 export default connect(null, mapDispatchToProps)(IconBtns);
