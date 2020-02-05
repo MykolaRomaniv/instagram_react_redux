@@ -5,11 +5,11 @@ import { bindActionCreators } from 'redux';
 import classes from './AddPostForm.module.scss';
 import * as actions from '../../redux/actions';
 
-function blobToDataURL(blob) {
+const blobToDataURL = (blob) => {
   return new Promise((fulfill, reject) => {
     let reader = new FileReader();
     reader.onerror = reject;
-    reader.onload = e => fulfill(reader.result);
+    reader.onload = () => fulfill(reader.result);
     reader.readAsDataURL(blob);
   });
 }

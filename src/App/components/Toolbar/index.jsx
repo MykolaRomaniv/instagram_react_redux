@@ -4,7 +4,7 @@ import Modal from '../UI/Modal';
 
 import classes from './Toolbar.module.scss';
 import instaLogo from '../../../assets/instagram.png';
-import AddPostForm from '../AddPostForm/index';
+import AddPostForm from '../AddPostForm';
 
 class Toolbar extends Component {
   state = {
