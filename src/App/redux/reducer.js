@@ -1,4 +1,7 @@
 import * as actionTypes from './types';
+import insert from '../services/insertInArr';
+import change from '../services/changeInArr';
+import del from '../services/deleteFromArr';
 
 const initialState = {
   isLoading: false,
@@ -18,36 +21,24 @@ const reducer = (state = initialState, action) => {
         posts: action.payload.posts
       };
     case actionTypes.DELETE_POST:
-      const updatedPosts = state.posts.filter(
-        item => item.id !== action.payload.postId
-      );
+      // const updatedPosts = state.posts.filter(
+      //   item => item.id !== action.payload.postId
+      // );
       return {
         ...state,
-        posts: updatedPosts
+        posts: del(state.posts, action.payload.postId)
       };
     case actionTypes.ADD_POST:
-      const newPosts = state.posts.slice();
-      newPosts.splice(action.payload.postIndex, 0, action.payload.post);
       return {
         ...state,
-        posts: newPosts
+        posts: insert(state.posts, action.payload.post, action.payload.postIndex)
       };
     case actionTypes.TOGGLE_LIKE:
-      const posts = state.posts.map(item => {
-        return item.id === action.payload.post.id
-          ? { ...action.payload.post }
-          : item;
-      });
       return {
         ...state,
-        posts: posts
+        posts: change(state.posts, action.payload.post)
       };
     case actionTypes.ADD_COMMENT: 
-      // const posts = state.posts.map(item => {
-      //   return item.id === action.payload.post.id
-      //     ? { ...action.payload.post }
-      //     : item;
-      // });
       console.log('ku', action.payload);
       return {
         ...state,

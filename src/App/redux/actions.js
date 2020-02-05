@@ -1,5 +1,6 @@
 import * as actionTypes from './types';
 import axios from '../services/axios';
+import insert from '../services/insertInArr';
 
 export const getPosts = () => dispatch => {
   dispatch({
@@ -92,13 +93,10 @@ export const addLike = (post, likes) => {
 }
 
 export const addComment = (post, comment) => {
-  const newArray = post.comments.slice();
-    newArray.push(comment);
-
   return {
     type: actionTypes.ADD_COMMENT,
     payload: {
-      post: {...post, comments: newArray}
+      post: {...post, comments: post.comments ? insert(post.comments, comment, 0) : [comment]}
     }
   }
 }
