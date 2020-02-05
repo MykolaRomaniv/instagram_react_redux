@@ -21,9 +21,6 @@ const reducer = (state = initialState, action) => {
         posts: action.payload.posts
       };
     case actionTypes.DELETE_POST:
-      // const updatedPosts = state.posts.filter(
-      //   item => item.id !== action.payload.postId
-      // );
       return {
         ...state,
         posts: del(state.posts, action.payload.postId)

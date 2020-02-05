@@ -1,5 +1,7 @@
-import * as actionTypes from './types';
+import moment from 'moment';
 import axios from '../services/axios';
+
+import * as actionTypes from './types';
 import insert from '../services/insertInArr';
 
 export const getPosts = () => dispatch => {
@@ -9,11 +11,15 @@ export const getPosts = () => dispatch => {
 
   axios
     .get('/posts')
-    .then(response => {
+    .then(res => {
+      let sortedPosts = res.data.sort((postA, postB) => {
+        return moment(postA.createdAt).isBefore(postB.createdAt, 'second') ? 1 : -1;
+      });
+
       dispatch({
         type: actionTypes.GET_POSTS,
         payload: {
-          posts: response.data
+          posts: sortedPosts
         }
       });
     })
@@ -87,16 +93,22 @@ export const addLike = (post, likes) => {
   return {
     type: actionTypes.TOGGLE_LIKE,
     payload: {
-      post: {...post, likes: likes}
+      post: {
+        ...post,
+        likes: likes
+      }
     }
-  }
-}
+  };
+};
 
 export const addComment = (post, comment) => {
   return {
     type: actionTypes.ADD_COMMENT,
     payload: {
-      post: {...post, comments: post.comments ? insert(post.comments, comment, 0) : [comment]}
+      post: {
+        ...post,
+        comments: post.comments ? insert(post.comments, comment, 0) : [comment]
+      }
     }
-  }
-}
+  };
+};

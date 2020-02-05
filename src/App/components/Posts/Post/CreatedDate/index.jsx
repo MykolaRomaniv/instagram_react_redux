@@ -6,7 +6,7 @@ import classes from './CreatedDate.module.scss';
 const createdDate = props => {
   return (
     <div className={classes.createdDate}>
-      <div>{moment(props.createdAt).fromNow()} AGO</div>
+      <div>{moment(props.createdAt).fromNow()}</div>
     </div>
   );
 };

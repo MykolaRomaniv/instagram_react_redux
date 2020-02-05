@@ -5,13 +5,18 @@ import { bindActionCreators } from 'redux';
 import classes from './AddPostForm.module.scss';
 import * as actions from '../../redux/actions';
 
-const blobToDataURL = (blob) => {
-  return new Promise((fulfill, reject) => {
-    let reader = new FileReader();
-    reader.onerror = reject;
-    reader.onload = () => fulfill(reader.result);
-    reader.readAsDataURL(blob);
-  });
+const blobToDataURL = async (blob) => {
+  try {
+    return new Promise((fulfill, reject) => {
+      let reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => fulfill(reader.result);
+      reader.readAsDataURL(blob);
+    });
+  }
+  catch (error) {
+    console.error("Can`t load file", error);
+  }
 }
 
 class AddPostForm extends Component {
@@ -26,7 +31,6 @@ class AddPostForm extends Component {
         photo: res
       })
     );
-
   };
 
   saveClickedHandler = () => {
