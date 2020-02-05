@@ -5,18 +5,6 @@ import { bindActionCreators } from 'redux';
 import Post from './Post';
 import * as actions from '../../redux/actions';
 
-/**
- *   
-    id: '56',
-    createdAt: '2019-07-22T00:30:10.777Z',
-    imageUrl: 'http://lorempixel.com/640/480/cats',
-    likes: 63814,
-    userName: 'Blanche Murray',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/itstotallyamy/128.jpg',
-    description: 'Awesome Steel Chicken Lake'
-    comments: ["asdad", "adsda"] // or "qwerty"
- */
-
 class Posts extends Component {
   componentDidMount = () => {
     this.props.actions.getPosts();
@@ -29,15 +17,7 @@ class Posts extends Component {
           this.props.posts.map(post => (
             <Post
               key={post.id}
-              id={post.id}
-              creationDate={post.createdAt}
-              img={post.imageUrl}
-              likesNumber={post.likes}
-              name={post.userName}
-              avatar={post.avatar}
-              description={post.description}
-              createdAt={post.createdAt}
-              comments={post.comments}
+              post={post}
             />
           ))
         ) : (

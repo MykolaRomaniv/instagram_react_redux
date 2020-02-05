@@ -19,20 +19,28 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.DELETE_POST:
       const updatedPosts = state.posts.filter(
-        (item) => item.id !== action.payload.postId
+        item => item.id !== action.payload.postId
       );
       return {
         ...state,
         posts: updatedPosts
       };
     case actionTypes.ADD_POST:
-      
-      let newPosts = state.posts.slice();
+      const newPosts = state.posts.slice();
       newPosts.splice(action.payload.postIndex, 0, action.payload.post);
-      
       return {
         ...state,
         posts: newPosts
+      };
+    case actionTypes.TOGGLE_LIKE:
+      const posts = state.posts.map(item => {
+        return item.id === action.payload.post.id
+          ? { ...action.payload.post }
+          : item;
+      });
+      return {
+        ...state,
+        posts: posts
       };
     default:
       return state;

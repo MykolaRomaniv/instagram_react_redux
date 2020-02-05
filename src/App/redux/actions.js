@@ -40,7 +40,7 @@ const del = postId => {
   };
 };
 
-export const deletePost = (postId) => {
+export const deletePost = postId => {
   return dispatch => {
     console.log('Deleting posts');
 
@@ -68,17 +68,16 @@ const add = (post, postIndex) => {
 export const addPost = (post, postIndex = 0) => {
   return dispatch => {
     console.log('Adding posts');
+
     const newPost = {
       createAt: new Date(),
       imageUrl: post.photo,
       likes: 0,
       description: post.description
     };
-    console.log(newPost)
     axios
       .post('/posts', newPost)
       .then(res => {
-        console.log(res.data)
         dispatch(add(res.data, postIndex));
       })
       .catch(error => {
@@ -87,3 +86,26 @@ export const addPost = (post, postIndex = 0) => {
   };
 };
 
+const like = post => {
+  return {
+    type: actionTypes.TOGGLE_LIKE,
+    payload: {
+      post: post
+    }
+  };
+};
+
+export const addLike = (post) => {
+  return dispatch => {
+    console.log('Sending like');
+
+    axios
+      .put('/posts/' + post.id, post)
+      .then(res => {
+        dispatch(like(res));
+      })
+      .catch(error => {
+        console.error('Can`t change like', error);
+      });
+  };
+};
