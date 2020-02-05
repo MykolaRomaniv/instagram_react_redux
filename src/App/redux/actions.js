@@ -64,20 +64,29 @@ export const addPost = (post, postIndex = 0) => dispatch => {
     });
 };
 
-export const addLike = (post) => dispatch => {
-  console.log('Sending like');
+// export const addLike = (post) => dispatch => {
+//   console.log('Sending like');
 
-  axios
-    .put('/posts/' + post.id, post)
-    .then(res => {
-      dispatch({
-        type: actionTypes.TOGGLE_LIKE,
-        payload: {
-          post: post
-        }
-      });
-    })
-    .catch(error => {
-      console.error('Can`t change like', error);
-    });
-};
+//   axios
+//     .put('/posts/' + post.id, post)
+//     .then(res => {
+//       dispatch({
+//         type: actionTypes.TOGGLE_LIKE,
+//         payload: {
+//           post: post
+//         }
+//       });
+//     })
+//     .catch(error => {
+//       console.error('Can`t change like', error);
+//     });
+// };
+
+export const addLike = (post, likes) => {
+  return {
+    type: actionTypes.TOGGLE_LIKE,
+    payload: {
+      post: {...post, likes: likes}
+    }
+  }
+}

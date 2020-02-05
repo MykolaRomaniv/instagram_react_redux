@@ -11,18 +11,31 @@ import saveIcon from '../../../../../assets/save.svg';
 import * as actions from '../../../../redux/actions';
 
 class IconBtns extends Component {
-  state = {
-    liked: false,
-    likes: this.props.likesNumber
-  };
+  constructor() {
+    super();
+    this.state = {
+      liked: false,
+      likes: 0
+    };
+  }
+
+  componentDidMount = () =>{
+    this.setState({
+      likes: this.props.likesNumber
+    })
+  }
+
+  componentDidUpdate = () => {
+    if (this.props.post.likes !== this.state.likes) {
+      this.props.actions.addLike(this.props.post, this.state.likes);
+    }
+  }
 
   likeClikedHandler = () => {
     this.setState({
       liked: !this.state.liked,
       likes: !this.state.liked ? this.state.likes + 1 : this.state.likes - 1
     });
-
-    this.props.actions.addLike(this.props.post);
   };
 
   render() {
