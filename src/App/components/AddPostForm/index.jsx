@@ -35,7 +35,7 @@ class AddPostForm extends Component {
 
   render() {
     return (
-      <form className={classes.Form} action="#">
+      <form className={classes.form} action="#">
         <input
           className={classes.photo}
           type="file"

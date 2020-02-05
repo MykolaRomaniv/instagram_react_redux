@@ -19,7 +19,7 @@ class Toolbar extends Component {
 
   render() {
     return (
-      <header className={classes.Toolbar}>
+      <header className={classes.toolbar}>
         <Modal show={this.state.open} modalClosed={this.toggleOpenHandler} >
           <AddPostForm clicked={this.toggleOpenHandler} />
         </Modal>
