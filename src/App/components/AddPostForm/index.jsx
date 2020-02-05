@@ -26,7 +26,13 @@ class AddPostForm extends Component {
         photo: res
       })
     );
+
   };
+
+  saveClickedHandler = () => {
+    this.props.actions.addPost(this.state)
+    this.props.saveClicked();
+  }
 
   descriptionChangeHandler = event => {
     this.setState({
@@ -49,7 +55,7 @@ class AddPostForm extends Component {
           onChange={this.descriptionChangeHandler}
         />
         <button
-          onClick={() => this.props.actions.addPost(this.state)}
+          onClick={this.saveClickedHandler}
           className={classes.saveBtn}
         >
           Save
