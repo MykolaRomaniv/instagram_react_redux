@@ -25,18 +25,24 @@ class AddPostForm extends Component {
   }
 
   photoUploadHandler = (event) => {
-    if (event.target.files[0].size < 10000) {
-      blobToDataURL(event.target.files[0]).then((res) =>
-        this.setState({
-          photo: res,
-        }),
-      )
-    } else {
-      toast.error('Image to large')
+    if (event.target.files[0]) {
+      if (event.target.files[0].size < 100000) {
+        blobToDataURL(event.target.files[0]).then((res) =>
+          this.setState({
+            photo: res,
+          }),
+        )
+      } else {
+        toast.error('Image to large')
+      }
     }
   }
 
   saveClickedHandler = () => {
+    this.setState({
+      photo: null,
+      description: '',
+    })
     this.props.actions.addPost(this.state)
     this.props.saveClicked()
   }
@@ -49,7 +55,7 @@ class AddPostForm extends Component {
 
   render() {
     return (
-      <form className={classes.form} action="#">
+      <form className={classes.form} action="#" >
         <input
           className={classes.photo}
           type="file"
@@ -60,6 +66,7 @@ class AddPostForm extends Component {
           className={classes.description}
           placeholder="Description..."
           onChange={this.descriptionChangeHandler}
+          value={this.state.description}
         />
         <button onClick={this.saveClickedHandler} className={classes.saveBtn}>
           Save
