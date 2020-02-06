@@ -5,7 +5,9 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "jsx": "react",
-    "lib": ["es6"],
+    "lib": [
+      "es6"
+    ],
     "moduleResolution": "node",
     "traceResolution": false,
     "noEmit": true,
@@ -13,11 +15,24 @@
     "target": "esnext",
     "skipLibCheck": true,
     "rootDir": "src",
-    "types": ["react", "jest", "node"]
+    "types": [
+      "react",
+      "jest",
+      "node"
+    ],
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "resolveJsonModule": true
   },
-  "types": ["react", "jest"],
-  "exclude": [
-    "node_modules",
+  "types": [
+    "react",
+    "jest"
   ],
-  "compileOnSave": false
+  "exclude": [
+    "node_modules"
+  ],
+  "compileOnSave": false,
+  "include": [
+    "src"
+  ]
 }
