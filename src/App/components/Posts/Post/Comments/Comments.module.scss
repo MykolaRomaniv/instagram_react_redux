@@ -1,9 +1,10 @@
 @import '../shared.module.scss';
 
 .commentList {
-    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
     @extend .paddings;
-    width: 100%;
+    
     .comment {
         padding: 0 8px;
     }

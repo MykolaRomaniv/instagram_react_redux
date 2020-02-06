@@ -32,8 +32,6 @@ export const getPosts = () => (dispatch) => {
 }
 
 export const deletePost = (postId) => (dispatch) => {
-  console.log('Deleting posts')
-
   axios
     .delete('/posts/' + postId)
     .then((res) => {
@@ -50,8 +48,6 @@ export const deletePost = (postId) => (dispatch) => {
 }
 
 export const addPost = (post, postIndex = 0) => (dispatch) => {
-  console.log('Adding posts')
-
   const newPost = {
     createAt: new Date(),
     imageUrl: post.photo,
@@ -75,7 +71,6 @@ export const addPost = (post, postIndex = 0) => (dispatch) => {
 }
 
 // export const addLike = (post) => dispatch => {
-//   console.log('Sending like');
 
 //   axios
 //     .put('/posts/' + post.id, post)
@@ -118,7 +113,6 @@ export const addComment = (post, comment) => {
 
 export const errorNotify = (errorMsg) => {
   toast.error(errorMsg)
-  console.log(errorMsg)
   return {
     type: actionTypes.ERROR,
     payload: {
