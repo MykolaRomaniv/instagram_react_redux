@@ -25,5 +25,7 @@
     { "language": "typescript", "autoFix": true },
     { "language": "typescriptreact", "autoFix": true }
   ],
-  "prettier.eslintIntegration": true
+  "prettier.eslintIntegration": true,
+  "editor.tabSize": 2,
+  "eslint.enable": true
 }

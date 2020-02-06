@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react",
+    "lib": ["es6"],
+    "moduleResolution": "node",
+    "traceResolution": false,
+    "noEmit": true,
+    "strict": true,
+    "target": "esnext",
+    "skipLibCheck": true,
+    "rootDir": "src",
+    "types": ["react", "jest", "node"]
+  },
+  "types": ["react", "jest"],
+  "exclude": [
+    "node_modules",
+  ],
+  "compileOnSave": false
+}
