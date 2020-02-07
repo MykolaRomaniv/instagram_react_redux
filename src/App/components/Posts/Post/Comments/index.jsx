@@ -1,21 +1,23 @@
-import React from 'react';
+import React from 'react'
 
-import classes from './Comments.module.scss';
+import classes from './Comments.module.scss'
 
-const comments = props => {
+const comments = (props) => {
   return (
     <div className={classes.commentList}>
-      {Array.isArray(props.comments)
-        ? (props.comments.map((comment, index) => {
-            return (
-              <div key={index} className={classes.comment}>
-                {comment}
-              </div>
-            );
-          }))
-        : props.comments}
+      {Array.isArray(props.comments) ? (
+        props.comments.map((comment, index) => {
+          return (
+            <div key={index} className={classes.comment}>
+              {comment}
+            </div>
+          )
+        })
+      ) : (
+        <div className={classes.comment}>{props.comments}</div>
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default comments;
+export default comments

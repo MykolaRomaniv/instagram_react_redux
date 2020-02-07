@@ -1,44 +1,49 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import classes from './CpmmentInput.module.scss';
-import * as actions from '../../../../redux/actions';
+import classes from './CpmmentInput.module.scss'
+import * as actions from '../../../../redux/actions'
 
-class commentInput extends Component {
-  state ={
-    comment: ''
-  };
+class СommentInput extends Component {
+  state = {
+    comment: '',
+  }
 
   postCommentHandler = () => {
-    this.props.actions.addComment(this.props.post, this.state.comment)
-    // return false;
+    if (this.state.comment) {
+      this.props.actions.addComment(this.props.post, this.state.comment)
+    }
+    this.setState({
+      comment: '',
+    })
   }
 
   textChangedHandler = (event) => {
     this.setState({
-      comment: event.target.value
+      comment: event.target.value,
     })
   }
 
   render() {
     return (
-      <div className={classes.commentForm} >{/*action="#" method="get" onSubmit={() => false}*/}
+      <div className={classes.commentForm}>
         <textarea
           className={classes.commentInput}
           placeholder="Add a comment..."
           onChange={this.textChangedHandler}
+          value={this.state.comment}
         ></textarea>
         <button onClick={this.postCommentHandler} className={classes.postBtn}>
           Post
         </button>
       </div>
-    );
+    )
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actions, dispatch),
+})
 
-export default connect(null, mapDispatchToProps)(commentInput);
+export default connect(null, mapDispatchToProps)(СommentInput)

@@ -1,9 +1,19 @@
 import moment from 'moment'
-import axios from '../services/axios'
 import { toast } from 'react-toastify'
+import axios from '../services/axios'
 
 import * as actionTypes from './types'
 import insert from '../services/insertInArr'
+
+export const errorNotify = (errorMsg) => {
+  toast.error(errorMsg)
+  return {
+    type: actionTypes.ERROR,
+    payload: {
+      errorMsg,
+    },
+  }
+}
 
 export const getPosts = () => (dispatch) => {
   dispatch({
@@ -13,7 +23,7 @@ export const getPosts = () => (dispatch) => {
   axios
     .get('/posts')
     .then((res) => {
-      let sortedPosts = res.data.sort((postA, postB) => {
+      const sortedPosts = res.data.sort((postA, postB) => {
         return moment(postA.createdAt).isBefore(postB.createdAt, 'second')
           ? 1
           : -1
@@ -27,23 +37,23 @@ export const getPosts = () => (dispatch) => {
       })
     })
     .catch((error) => {
-      dispatch(errorNotify('Can`t get data from server' + error))
+      dispatch(errorNotify(`Can\`t get data from server${error}`))
     })
 }
 
 export const deletePost = (postId) => (dispatch) => {
   axios
-    .delete('/posts/' + postId)
-    .then((res) => {
+    .delete(`/posts/${postId}`)
+    .then(() => {
       dispatch({
         type: actionTypes.DELETE_POST,
         payload: {
-          postId: postId,
+          postId,
         },
       })
     })
     .catch((error) => {
-      dispatch(errorNotify('Can`t delete post' + error))
+      dispatch(errorNotify(`Can\`t delete post${error}`))
     })
 }
 
@@ -61,12 +71,12 @@ export const addPost = (post, postIndex = 0) => (dispatch) => {
         type: actionTypes.ADD_POST,
         payload: {
           post: res.data,
-          postIndex: postIndex,
+          postIndex,
         },
       })
     })
     .catch((error) => {
-      dispatch(errorNotify('Can`t add post' + error))
+      dispatch(errorNotify(`Can\`t add post${error}`))
     })
 }
 
@@ -93,30 +103,29 @@ export const addLike = (post, likes) => {
     payload: {
       post: {
         ...post,
-        likes: likes,
+        likes,
       },
     },
   }
 }
 
 export const addComment = (post, comment) => {
+  let comments = []
+  if (Array.isArray(post.comments)) {
+    comments = insert(post.comments, comment, 0)
+  } else if (typeof post.comments === 'string') {
+    comments = [comment, post.comments]
+  } else {
+    comments = [comment]
+  }
+
   return {
     type: actionTypes.ADD_COMMENT,
     payload: {
       post: {
         ...post,
-        comments: post.comments ? insert(post.comments, comment, 0) : [comment],
+        comments,
       },
-    },
-  }
-}
-
-export const errorNotify = (errorMsg) => {
-  toast.error(errorMsg)
-  return {
-    type: actionTypes.ERROR,
-    payload: {
-      errorMsg: errorMsg,
     },
   }
 }
