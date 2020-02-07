@@ -11,7 +11,11 @@
   justify-content: space-between;
 
   .title {
-    padding: 16px 20% 0 40%;
+    width: 100%;
+    
+    img {
+      padding: 16px;
+    }
   }
 
   .addBtn {

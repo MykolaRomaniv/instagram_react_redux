@@ -23,7 +23,9 @@ class Toolbar extends Component {
         <Modal show={this.state.open} modalClosed={this.toggleOpenHandler}>
           <AddPostForm saveClicked={this.toggleOpenHandler} />
         </Modal>
-        <img className={classes.title} src={instaLogo} alt="" />
+        <div className={classes.title}>
+          <img src={instaLogo} alt="" />
+        </div>
         <AddBoxIcon
           onClick={this.toggleOpenHandler}
           className={classes.addBtn}

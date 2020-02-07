@@ -57,4 +57,10 @@
   .saveBtn {
     align-self: center;
   }
+  
+  @media (max-width: 500px) {
+    .photoLabel {
+      font-size: inherit;
+    }
+  }
 }
