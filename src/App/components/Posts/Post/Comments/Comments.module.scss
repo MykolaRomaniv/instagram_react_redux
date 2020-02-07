@@ -1,11 +1,11 @@
 @import '../shared.module.scss';
 
 .commentList {
-    display: flex;
-    flex-wrap: wrap;
-    @extend .paddings;
-    
-    .comment {
-        padding-right: 8px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  @extend .paddings;
+
+  .comment {
+    padding-right: 8px;
+  }
 }

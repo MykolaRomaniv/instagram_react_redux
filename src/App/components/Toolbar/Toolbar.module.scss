@@ -1,22 +1,22 @@
 .toolbar {
-    background-color: #fff;
-    text-align: center;
-    height: 77px;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 3;
-    border: 1px solid #dbdbdb;
-    display: flex;
-    justify-content: space-between;
+  background-color: #fff;
+  text-align: center;
+  height: 77px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 3;
+  border: 1px solid #dbdbdb;
+  display: flex;
+  justify-content: space-between;
 
-    .title {
-        padding: 16px 20% 0 40%;
-    }
+  .title {
+    padding: 16px 20% 0 40%;
+  }
 
-    .addBtn {
-        cursor: pointer;
-        margin: auto;
-        padding: 16px;
-    }
+  .addBtn {
+    cursor: pointer;
+    margin: auto;
+    padding: 16px;
+  }
 }

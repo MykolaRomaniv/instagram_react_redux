@@ -6,8 +6,7 @@ import Posts from './components/Posts'
 import Toolbar from './components/Toolbar'
 import classes from './App.module.scss'
 
-
-function App() {
+const App = () => {
   return (
     <>
       <ToastContainer

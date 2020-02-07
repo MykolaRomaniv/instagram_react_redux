@@ -1,12 +1,12 @@
-import React from 'react';
-import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React from 'react'
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
-import classes from './PostHeader.module.scss';
-import * as actions from '../../../../redux/actions';
+import classes from './PostHeader.module.scss'
+import * as actions from '../../../../redux/actions'
 
-const postHeader = props => {
+const postHeader = (props) => {
   return (
     <div className={classes.postHeader}>
       <div className={classes.user}>
@@ -18,11 +18,11 @@ const postHeader = props => {
         onClick={() => props.actions.deletePost(props.id)}
       />
     </div>
-  );
-};
+  )
+}
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(actions, dispatch),
+})
 
-export default connect(null, mapDispatchToProps)(postHeader);
+export default connect(null, mapDispatchToProps)(postHeader)

@@ -22,7 +22,7 @@
   "plugins": ["@typescript-eslint"],
   "settings": {
     "react": {
-      "version": "detect" 
+      "version": "detect"
     },
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
     "import/parsers": {

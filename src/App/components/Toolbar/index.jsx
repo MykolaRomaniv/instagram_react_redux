@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import Modal from '../UI/Modal';
+import React, { Component } from 'react'
+import AddBoxIcon from '@material-ui/icons/AddBox'
+import Modal from '../UI/Modal'
 
-import classes from './Toolbar.module.scss';
-import instaLogo from '../../../assets/instagram.png';
-import AddPostForm from '../AddPostForm';
+import classes from './Toolbar.module.scss'
+import instaLogo from '../../../assets/instagram.png'
+import AddPostForm from '../AddPostForm'
 
 class Toolbar extends Component {
   state = {
-    open: false
-  };
+    open: false,
+  }
 
   toggleOpenHandler = () => {
     this.setState({
-      open: !this.state.open
-    });
-  };
+      open: !this.state.open,
+    })
+  }
 
   render() {
     return (
       <header className={classes.toolbar}>
-        <Modal show={this.state.open} modalClosed={this.toggleOpenHandler} >
+        <Modal show={this.state.open} modalClosed={this.toggleOpenHandler}>
           <AddPostForm saveClicked={this.toggleOpenHandler} />
         </Modal>
         <img className={classes.title} src={instaLogo} alt="" />
@@ -30,8 +30,8 @@ class Toolbar extends Component {
           fontSize="large"
         />
       </header>
-    );
+    )
   }
 }
 
-export default Toolbar;
+export default Toolbar

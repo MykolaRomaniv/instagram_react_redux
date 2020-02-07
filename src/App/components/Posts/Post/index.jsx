@@ -1,14 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-
-import classes from './Post.module.scss';
-import PostHeader from './PostHeader';
-import IconBtns from './IconBtns';
-import PostImage from './PostImage';
-import Comments from './Comments';
-import CommentInput from './CommentInput';
-import CreateDate from './CreatedDate';
-import PostDescription from './PostDescription';
+import classes from './Post.module.scss'
+import PostHeader from './PostHeader'
+import IconBtns from './IconBtns'
+import PostImage from './PostImage'
+import Comments from './Comments'
+import CommentInput from './CommentInput'
+import CreateDate from './CreatedDate'
+import PostDescription from './PostDescription'
 
 /**
  * {
@@ -23,18 +22,25 @@ import PostDescription from './PostDescription';
  * }
  */
 
-const Post = props => {
-    return (
-      <div className={classes.post}>
-        <PostHeader avatar={props.post.avatar} name={props.post.userName} id={props.post.id} />
-        <PostImage img={props.post.imageUrl} />
-        <IconBtns likesNumber={props.post.likes} post={props.post} />
-        <PostDescription desc={props.post.description} userName={props.post.userName} />
-        <Comments comments={props.post.comments} />
-        <CreateDate createdAt={props.post.createdAt} />
-        <CommentInput post={props.post} />
-      </div>
-    );
+const Post = (props) => {
+  return (
+    <div className={classes.post}>
+      <PostHeader
+        avatar={props.post.avatar}
+        name={props.post.userName}
+        id={props.post.id}
+      />
+      <PostImage img={props.post.imageUrl} />
+      <IconBtns likesNumber={props.post.likes} post={props.post} />
+      <PostDescription
+        desc={props.post.description}
+        userName={props.post.userName}
+      />
+      <Comments comments={props.post.comments} />
+      <CreateDate createdAt={props.post.createdAt} />
+      <CommentInput post={props.post} />
+    </div>
+  )
 }
 
-export default Post;
+export default Post
