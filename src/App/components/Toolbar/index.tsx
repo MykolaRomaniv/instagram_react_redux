@@ -11,13 +11,13 @@ class Toolbar extends Component {
     open: false,
   }
 
-  toggleOpenHandler = () => {
+  toggleOpenHandler = (): void => {
     this.setState({
       open: !this.state.open,
     })
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <header className={classes.toolbar}>
         <Modal show={this.state.open} modalClosed={this.toggleOpenHandler}>

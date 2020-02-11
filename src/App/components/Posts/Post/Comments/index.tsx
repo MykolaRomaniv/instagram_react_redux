@@ -2,7 +2,11 @@ import React from 'react'
 
 import classes from './Comments.module.scss'
 
-const comments = (props) => {
+interface IProps {
+  comments: string[]
+}
+
+const comments = (props: IProps): JSX.Element => {
   return (
     <div className={classes.commentList}>
       {Array.isArray(props.comments) ? (

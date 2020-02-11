@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, ChangeEvent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { toast } from 'react-toastify'
@@ -6,28 +6,26 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
 import classes from './AddPostForm.module.scss'
 import * as actions from '../../redux/actions'
+import blobToDataURI from '../../services/blobToDataURI'
 
-const blobToDataURL = async (blob) => {
-  try {
-    return new Promise((fulfill, reject) => {
-      const reader = new FileReader()
-      reader.onerror = reject
-      reader.onload = () => fulfill(reader.result)
-      reader.readAsDataURL(blob)
-    })
-  } catch (error) {
-    toast.error(`Can\`t load file${error}`)
-  }
+interface IState {
+  photo: null | File
+  description: string
 }
 
-class AddPostForm extends Component {
-  state = {
+interface IProps {
+  actions?: any
+  saveClicked: () => void
+}
+
+class AddPostForm extends Component<IProps, IState> {
+  readonly state: IState = {
     photo: null,
     description: '',
   }
 
-  photoUploadHandler = (event) => {
-    if (event && event.target.files[0]) {
+  photoUploadHandler = (event: ChangeEvent<HTMLInputElement>): void => {
+    if (event.target && event.target.files && event.target.files.length) {
       if (event.target.files[0].size < 100000) {
         this.setState({
           photo: event.target.files[0],
@@ -38,14 +36,18 @@ class AddPostForm extends Component {
     }
   }
 
-  saveClickedHandler = () => {
+  saveClickedHandler = (): void => {
     if (this.state.photo) {
-      blobToDataURL(this.state.photo).then((res) =>
-        this.props.actions.addPost({
-          photo: res,
-          description: this.state.description,
-        }),
-      )
+      blobToDataURI(this.state.photo)
+        .then((res) =>
+          this.props.actions.addPost({
+            imageUrl: res,
+            description: this.state.description,
+          }),
+        )
+        .catch((error) => {
+          toast.error(`Can\`t load file ${error}`)
+        })
       this.setState({
         photo: null,
         description: '',
@@ -56,13 +58,15 @@ class AddPostForm extends Component {
     }
   }
 
-  descriptionChangeHandler = (event) => {
+  descriptionChangeHandler = (
+    event: ChangeEvent<HTMLTextAreaElement>,
+  ): void => {
     this.setState({
       description: event.target.value,
     })
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <form className={classes.form} action="#">
         <label htmlFor="photo" className={classes.photoLabel}>
@@ -92,7 +96,7 @@ class AddPostForm extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

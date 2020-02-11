@@ -4,8 +4,9 @@ import axios from '../services/axios'
 
 import * as actionTypes from './types'
 import insert from '../services/insertInArr'
+import { IPost } from 'App/components/Posts/Post'
 
-export const errorNotify = (errorMsg) => {
+export const errorNotify = (errorMsg: string) => {
   toast.error(errorMsg)
   return {
     type: actionTypes.ERROR,
@@ -15,7 +16,7 @@ export const errorNotify = (errorMsg) => {
   }
 }
 
-export const getPosts = () => (dispatch) => {
+export const getPosts = () => (dispatch: any) => {
   dispatch({
     type: actionTypes.LOADING_POSTS,
   })
@@ -23,7 +24,7 @@ export const getPosts = () => (dispatch) => {
   axios
     .get('/posts')
     .then((res) => {
-      const sortedPosts = res.data.sort((postA, postB) => {
+      const sortedPosts = res.data.sort((postA: IPost, postB: IPost) => {
         return moment(postA.createdAt).isBefore(postB.createdAt, 'second')
           ? 1
           : -1
@@ -41,7 +42,7 @@ export const getPosts = () => (dispatch) => {
     })
 }
 
-export const deletePost = (postId) => (dispatch) => {
+export const deletePost = (postId: number) => (dispatch: any) => {
   axios
     .delete(`/posts/${postId}`)
     .then(() => {
@@ -57,10 +58,10 @@ export const deletePost = (postId) => (dispatch) => {
     })
 }
 
-export const addPost = (post, postIndex = 0) => (dispatch) => {
+export const addPost = (post: IPost, postIndex = 0) => (dispatch: any) => {
   const newPost = {
     createAt: new Date(),
-    imageUrl: post.photo,
+    imageUrl: post.imageUrl,
     likes: 0,
     description: post.description,
   }
@@ -97,7 +98,7 @@ export const addPost = (post, postIndex = 0) => (dispatch) => {
 //     });
 // };
 
-export const addLike = (post, likes) => {
+export const addLike = (post: IPost, likes: number) => {
   return {
     type: actionTypes.TOGGLE_LIKE,
     payload: {
@@ -109,7 +110,7 @@ export const addLike = (post, likes) => {
   }
 }
 
-export const addComment = (post, comment) => {
+export const addComment = (post: IPost, comment: string) => {
   let comments = []
   if (Array.isArray(post.comments)) {
     comments = insert(post.comments, comment, 0)

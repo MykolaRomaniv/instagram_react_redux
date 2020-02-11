@@ -9,19 +9,27 @@ import commentsIcon from '../../../../../assets/comments.svg'
 import shareIcon from '../../../../../assets/share.svg'
 import saveIcon from '../../../../../assets/save.svg'
 import * as actions from '../../../../redux/actions'
+import { IPost } from '../index'
 
-class IconBtns extends Component {
-  constructor() {
-    super()
-    this.state = {
-      liked: false,
-      likes: 0,
-    }
+interface IProps {
+  post: IPost
+  actions?: any
+}
+
+interface IState {
+  liked: boolean
+  likes: number
+}
+
+class IconBtns extends Component<IProps, IState> {
+  state: IState = {
+    liked: false,
+    likes: 0,
   }
 
   componentDidMount = () => {
     this.setState({
-      likes: this.props.likesNumber,
+      likes: this.props.post.likes,
     })
   }
 
@@ -38,7 +46,7 @@ class IconBtns extends Component {
     })
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <>
         <div className={classes.iconBtns}>
@@ -64,7 +72,7 @@ class IconBtns extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

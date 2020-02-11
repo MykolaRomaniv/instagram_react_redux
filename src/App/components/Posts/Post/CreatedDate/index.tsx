@@ -3,7 +3,11 @@ import moment from 'moment'
 
 import classes from './CreatedDate.module.scss'
 
-const createdDate = (props) => {
+interface IProps {
+  createdAt: Date
+}
+
+const createdDate = (props: IProps): JSX.Element => {
   return (
     <div className={classes.createdDate}>
       <div>{moment(props.createdAt).fromNow()}</div>

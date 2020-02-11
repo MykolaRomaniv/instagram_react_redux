@@ -3,7 +3,13 @@ import React from 'react'
 import classes from './Modal.module.scss'
 import Backdrop from '../Backdrop'
 
-const modal = (props) => {
+interface IProps {
+  show: boolean
+  modalClosed: () => void
+  children: any
+}
+
+const modal = (props: IProps): JSX.Element => {
   return (
     <>
       <Backdrop show={props.show} clicked={props.modalClosed} />

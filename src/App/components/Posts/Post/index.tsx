@@ -21,21 +21,30 @@ import PostDescription from './PostDescription'
  *  "comments":["Варка","варила","вареника","Варку","вареником"]
  * }
  */
+export type IImageUrl = string | ArrayBuffer | null
 
-const Post = (props) => {
+export interface IPost {
+  id: number
+  createdAt: Date
+  imageUrl: IImageUrl
+  likes: number
+  userName: string
+  avatar: IImageUrl
+  description: string
+  comments: string[]
+}
+
+type IProps = Readonly<{
+  post: IPost
+}>
+
+const Post = (props: IProps): JSX.Element => {
   return (
     <div className={classes.post}>
-      <PostHeader
-        avatar={props.post.avatar}
-        name={props.post.userName}
-        id={props.post.id}
-      />
+      <PostHeader post={props.post} />
       <PostImage img={props.post.imageUrl} />
-      <IconBtns likesNumber={props.post.likes} post={props.post} />
-      <PostDescription
-        desc={props.post.description}
-        userName={props.post.userName}
-      />
+      <IconBtns post={props.post} />
+      <PostDescription post={props.post} />
       <Comments comments={props.post.comments} />
       <CreateDate createdAt={props.post.createdAt} />
       <CommentInput post={props.post} />

@@ -1,12 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component, ChangeEvent } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import classes from './CpmmentInput.module.scss'
 import * as actions from '../../../../redux/actions'
+import { IPost } from '..'
 
-class СommentInput extends Component {
-  state = {
+
+type State = Readonly<{
+  comment: string
+}>
+
+type Props = {
+  actions?: any
+  post: IPost
+}
+
+class СommentInput extends Component<Props, State> {
+  readonly state: State = {
     comment: '',
   }
 
@@ -19,13 +30,13 @@ class СommentInput extends Component {
     })
   }
 
-  textChangedHandler = (event) => {
+  textChangedHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
     this.setState({
       comment: event.target.value,
     })
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <div className={classes.commentForm}>
         <textarea
@@ -42,7 +53,7 @@ class СommentInput extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: any): any => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

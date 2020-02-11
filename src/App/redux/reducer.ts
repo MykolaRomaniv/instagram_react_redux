@@ -2,13 +2,19 @@ import * as actionTypes from './types'
 import insert from '../services/insertInArr'
 import change from '../services/changeInArr'
 import del from '../services/deleteFromArr'
+import { IPost } from 'App/components/Posts/Post'
 
-const initialState = {
+interface IPostStorage {
+  isLoading: boolean
+  posts: IPost[]
+}
+
+const initialState: IPostStorage = {
   isLoading: false,
   posts: [],
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.LOADING_POSTS:
       return {

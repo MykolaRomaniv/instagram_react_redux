@@ -2,15 +2,20 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Post from './Post'
+import Post, { IPost } from './Post'
 import * as actions from '../../redux/actions'
 
-class Posts extends Component {
+interface IProps {
+  actions: typeof actions
+  posts: IPost[]
+}
+
+class Posts extends Component<IProps, {}> {
   componentDidMount = () => {
     this.props.actions.getPosts()
   }
 
-  render() {
+  render(): JSX.Element {
     return (
       <>
         {this.props.posts && this.props.posts.length ? (
@@ -23,13 +28,13 @@ class Posts extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     posts: state.posts.posts,
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

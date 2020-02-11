@@ -6,7 +6,7 @@ import Posts from './components/Posts'
 import Toolbar from './components/Toolbar'
 import classes from './App.module.scss'
 
-const App = () => {
+const App = (): JSX.Element => {
   return (
     <>
       <ToastContainer
@@ -16,7 +16,6 @@ const App = () => {
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        pauseOnVisibilityChange={false}
         draggable
         pauseOnHover
       />

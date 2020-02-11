@@ -5,23 +5,31 @@ import { bindActionCreators } from 'redux'
 
 import classes from './PostHeader.module.scss'
 import * as actions from '../../../../redux/actions'
+import { IPost } from '..'
 
-const postHeader = (props) => {
+interface IProps {
+  post: IPost
+  actions?: any
+}
+
+const postHeader = (props: IProps): JSX.Element => {
+  const {avatar, userName, id} = props.post;
+
   return (
     <div className={classes.postHeader}>
       <div className={classes.user}>
-        <img className={classes.avatar} src={props.avatar} alt="avatar" />
-        <div className={classes.name}>{props.name}</div>
+        <img className={classes.avatar} src={avatar?.toString()} alt="avatar" />
+        <div className={classes.name}>{userName}</div>
       </div>
       <DeleteOutlinedIcon
         className={classes.deleteIcon}
-        onClick={() => props.actions.deletePost(props.id)}
+        onClick={() => props.actions.deletePost(id)}
       />
     </div>
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
