@@ -3,10 +3,9 @@ import { toast } from 'react-toastify'
 import axios from '../services/axios'
 
 import * as actionTypes from './types'
-import insert from '../services/insertInArr'
-import { IPost } from 'App/components/Posts/Post'
+import { IPost, INewPost } from 'App/components/Posts/Post'
 
-export const errorNotify = (errorMsg: string) => {
+export const errorNotify = (errorMsg: string): actionTypes.ActionTypes => {
   toast.error(errorMsg)
   return {
     type: actionTypes.ERROR,
@@ -42,10 +41,7 @@ export const getPosts = () => (dispatch: any) => {
     })
 }
 
-export const deletePost = (postId: number | undefined) => (dispatch: any) => {
-  if(typeof postId === 'undefined') {
-    dispatch(errorNotify(`Can\`t delete post. Missing id`))
-  }
+export const deletePost = (postId: number) => (dispatch: any) => {
   axios
     .delete(`/posts/${postId}`)
     .then(() => {
@@ -61,13 +57,7 @@ export const deletePost = (postId: number | undefined) => (dispatch: any) => {
     })
 }
 
-export const addPost = (post: IPost, postIndex = 0) => (dispatch: any) => {
-  // const newPost = {
-  //   createAt: new Date(),
-  //   imageUrl: post.imageUrl,
-  //   likes: 0,
-  //   description: post.description,
-  // }
+export const addPost = (post: INewPost, postIndex = 0) => (dispatch: any) => {
   axios
     .post('/posts', post)
     .then((res) => {
@@ -84,24 +74,10 @@ export const addPost = (post: IPost, postIndex = 0) => (dispatch: any) => {
     })
 }
 
-// export const addLike = (post) => dispatch => {
-
-//   axios
-//     .put('/posts/' + post.id, post)
-//     .then(res => {
-//       dispatch({
-//         type: actionTypes.TOGGLE_LIKE,
-//         payload: {
-//           post: post
-//         }
-//       });
-//     })
-//     .catch(error => {
-//       console.error('Can`t change like', error);
-//     });
-// };
-
-export const addLike = (post: IPost, likes: number) => {
+export const addLike = (
+  post: IPost,
+  likes: number,
+): actionTypes.ActionTypes => {
   return {
     type: actionTypes.TOGGLE_LIKE,
     payload: {
@@ -113,10 +89,17 @@ export const addLike = (post: IPost, likes: number) => {
   }
 }
 
-export const addComment = (post: IPost, comment: string) => {
+export const addComment = (
+  post: IPost,
+  comment: string,
+): actionTypes.ActionTypes => {
   let comments = []
   if (Array.isArray(post.comments)) {
-    comments = insert(post.comments, comment, 0)
+    comments = [
+      ...post.comments.slice(0, 0),
+      comment,
+      ...post.comments.slice(0),
+    ]
   } else if (typeof post.comments === 'string') {
     comments = [comment, post.comments]
   } else {

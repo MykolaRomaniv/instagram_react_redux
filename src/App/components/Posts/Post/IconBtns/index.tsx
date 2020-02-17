@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import classes from './IconBtns.module.scss'
@@ -11,14 +11,13 @@ import saveIcon from '../../../../../assets/save.svg'
 import * as actions from '../../../../redux/actions'
 import { IPost } from '../index'
 
-interface IProps {
-  post: IPost
-  actions?: typeof actions
-}
-
 interface IState {
   liked: boolean
   likes: number
+}
+
+interface IProps extends ConnectedProps<typeof connector>{
+  post: IPost
 }
 
 class IconBtns extends Component<IProps, IState> {
@@ -35,7 +34,7 @@ class IconBtns extends Component<IProps, IState> {
 
   componentDidUpdate = () => {
     if (this.props.post.likes !== this.state.likes) {
-      this.props.actions!.addLike(this.props.post, this.state.likes)
+      this.props.actions.addLike(this.props.post, this.state.likes)
     }
   }
 
@@ -72,8 +71,13 @@ class IconBtns extends Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any): any => ({
+const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(null, mapDispatchToProps)(IconBtns)
+const connector = connect(
+  null,
+  mapDispatchToProps
+)
+
+export default connector(IconBtns)

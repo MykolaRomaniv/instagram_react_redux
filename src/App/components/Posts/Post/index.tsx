@@ -23,15 +23,18 @@ import PostDescription from './PostDescription'
  */
 export type IImageUrl = string | ArrayBuffer | null
 
-export interface IPost {
-  id?: number
+export interface INewPost {
   createdAt: Date
   imageUrl: IImageUrl
   likes: number
-  userName?: string
-  avatar?: IImageUrl
   description: string
   comments: string[]
+}
+
+export interface IPost extends INewPost{
+  id: number
+  userName: string
+  avatar: IImageUrl
 }
 
 type IProps = Readonly<{

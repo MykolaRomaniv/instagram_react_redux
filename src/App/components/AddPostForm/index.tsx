@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { toast } from 'react-toastify'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
@@ -13,8 +13,8 @@ interface IState {
   description: string
 }
 
-interface IProps {
-  actions?: typeof actions
+interface IProps extends ConnectedProps<typeof connector>{
+  // actions: typeof actions
   saveClicked: () => void
 }
 
@@ -40,21 +40,24 @@ class AddPostForm extends Component<IProps, IState> {
     if (this.state.photo) {
       blobToDataURI(this.state.photo)
         .then((res) =>
-          this.props.actions!.addPost({
+          this.props.actions.addPost({
             likes: 0,
             createdAt: new Date(),
             imageUrl: res,
             description: this.state.description,
-            comments: []
+            comments: [],
+          }),
+        )
+        //TODO Sending spinner
+        .then(() =>
+          this.setState({
+            photo: null,
+            description: '',
           }),
         )
         .catch((error) => {
           toast.error(`Can\`t load file ${error}`)
         })
-      this.setState({
-        photo: null,
-        description: '',
-      })
       this.props.saveClicked()
     } else {
       toast.error('Please add image')
@@ -99,8 +102,13 @@ class AddPostForm extends Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any): any => ({
+const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(null, mapDispatchToProps)(AddPostForm)
+const connector = connect(
+  null,
+  mapDispatchToProps
+)
+
+export default connector(AddPostForm)

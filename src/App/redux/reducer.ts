@@ -1,5 +1,4 @@
 import * as actionTypes from './types'
-import insert from '../services/insertInArr'
 import change from '../services/changeInArr'
 import del from '../services/deleteFromArr'
 import { IPost } from 'App/components/Posts/Post'
@@ -14,7 +13,10 @@ const initialState: IPostStorage = {
   posts: [],
 }
 
-const reducer = (state = initialState, action: any) => {
+const reducer = (
+  state = initialState,
+  action: actionTypes.ActionTypes,
+): IPostStorage => {
   switch (action.type) {
     case actionTypes.LOADING_POSTS:
       return {
@@ -34,11 +36,11 @@ const reducer = (state = initialState, action: any) => {
     case actionTypes.ADD_POST:
       return {
         ...state,
-        posts: insert(
-          state.posts,
+        posts: [
+          ...state.posts.slice(0, action.payload.postIndex),
           action.payload.post,
-          action.payload.postIndex,
-        ),
+          ...state.posts.slice(action.payload.postIndex),
+        ],
       }
     case actionTypes.TOGGLE_LIKE:
       return {

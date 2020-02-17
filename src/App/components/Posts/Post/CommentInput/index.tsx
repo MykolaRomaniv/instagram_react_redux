@@ -1,29 +1,27 @@
 import React, { Component, ChangeEvent } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import classes from './CpmmentInput.module.scss'
 import * as actions from '../../../../redux/actions'
 import { IPost } from '..'
 
-
-type State = Readonly<{
+interface IState {
   comment: string
-}>
+}
 
-type Props = {
-  actions?: typeof actions
+interface IProps extends ConnectedProps<typeof connector>{
   post: IPost
 }
 
-class СommentInput extends Component<Props, State> {
-  readonly state: State = {
+class СommentInput extends Component<IProps, IState> {
+  readonly state: IState = {
     comment: '',
   }
 
   postCommentHandler = () => {
     if (this.state.comment) {
-      this.props.actions!.addComment(this.props.post, this.state.comment)
+      this.props.actions.addComment(this.props.post, this.state.comment)
     }
     this.setState({
       comment: '',
@@ -53,8 +51,13 @@ class СommentInput extends Component<Props, State> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any): any => ({
+const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(null, mapDispatchToProps)(СommentInput)
+const connector = connect(
+  null,
+  mapDispatchToProps
+)
+
+export default connector(СommentInput)

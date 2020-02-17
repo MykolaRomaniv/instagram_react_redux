@@ -1,12 +1,14 @@
+import { RootState } from 'index'
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import Post, { IPost } from './Post'
 import * as actions from '../../redux/actions'
+import Post, { IPost } from './Post'
 
-interface IProps {
-  actions: typeof actions
+
+interface IProps extends ConnectedProps<typeof connector> {
+  // actions: typeof actions
   posts: IPost[]
 }
 
@@ -28,7 +30,7 @@ class Posts extends Component<IProps, {}> {
   }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     posts: state.posts.posts,
   }
@@ -38,4 +40,9 @@ const mapDispatchToProps = (dispatch: any) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+const connector = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)
+
+export default connector(Posts)

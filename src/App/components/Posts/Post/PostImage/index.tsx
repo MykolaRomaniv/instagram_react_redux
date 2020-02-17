@@ -10,7 +10,7 @@ interface IProps {
 const postImage = (props: IProps): JSX.Element => {
   return (
     <div>
-      <img className={classes.img} src={props.img?.toString()} alt="" />
+      <img className={classes.img} src={props.img ? props.img.toString() : ""} alt="" />
     </div>
   )
 }
