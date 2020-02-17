@@ -1,23 +1,23 @@
+import { ActionTypes } from 'App/redux/types'
 import React, { Component } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 
-import classes from './IconBtns.module.scss'
+import commentsIcon from '../../../../../assets/comments.svg'
 import likeIcon from '../../../../../assets/like.svg'
 import likedIcon from '../../../../../assets/liked.svg'
-import commentsIcon from '../../../../../assets/comments.svg'
-import shareIcon from '../../../../../assets/share.svg'
 import saveIcon from '../../../../../assets/save.svg'
+import shareIcon from '../../../../../assets/share.svg'
 import * as actions from '../../../../redux/actions'
 import { IPost } from '../index'
-import { ActionTypes } from 'App/redux/types'
+import classes from './IconBtns.module.scss'
 
 interface IState {
   liked: boolean
   likes: number
 }
 
-interface IProps extends ConnectedProps<typeof connector>{
+interface IProps extends ConnectedProps<typeof connector> {
   post: IPost
 }
 
@@ -76,9 +76,6 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-const connector = connect(
-  null,
-  mapDispatchToProps
-)
+const connector = connect(null, mapDispatchToProps)
 
 export default connector(IconBtns)

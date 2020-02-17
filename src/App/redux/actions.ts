@@ -67,7 +67,9 @@ export const deletePost = (postId: number): AppThunk => (dispatch) => {
     })
 }
 
-export const addPost = (post: INewPost, postIndex = 0): AppThunk => (dispatch) => {
+export const addPost = (post: INewPost, postIndex = 0): AppThunk => (
+  dispatch,
+) => {
   axios
     .post('/posts', post)
     .then((res) => {

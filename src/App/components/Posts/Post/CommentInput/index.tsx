@@ -1,17 +1,17 @@
-import React, { Component, ChangeEvent } from 'react'
+import { ActionTypes } from 'App/redux/types'
+import React, { ChangeEvent, Component } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
 
-import classes from './CpmmentInput.module.scss'
-import * as actions from '../../../../redux/actions'
 import { IPost } from '..'
-import { ActionTypes } from 'App/redux/types'
+import * as actions from '../../../../redux/actions'
+import classes from './CpmmentInput.module.scss'
 
 interface IState {
   comment: string
 }
 
-interface IProps extends ConnectedProps<typeof connector>{
+interface IProps extends ConnectedProps<typeof connector> {
   post: IPost
 }
 
@@ -56,9 +56,6 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-const connector = connect(
-  null,
-  mapDispatchToProps
-)
+const connector = connect(null, mapDispatchToProps)
 
 export default connector(СommentInput)

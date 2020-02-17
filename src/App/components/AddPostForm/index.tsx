@@ -1,21 +1,20 @@
-import React, { Component, ChangeEvent } from 'react'
-import { connect, ConnectedProps } from 'react-redux'
-import { bindActionCreators, Dispatch} from 'redux'
-import { toast } from 'react-toastify'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
+import { ActionTypes } from 'App/redux/types'
+import React, { ChangeEvent, Component } from 'react'
+import { connect, ConnectedProps } from 'react-redux'
+import { toast } from 'react-toastify'
+import { bindActionCreators, Dispatch } from 'redux'
 
-import classes from './AddPostForm.module.scss'
 import * as actions from '../../redux/actions'
 import blobToDataURI from '../../services/blobToDataURI'
-import { ActionTypes } from 'App/redux/types'
+import classes from './AddPostForm.module.scss'
 
 interface IState {
   photo: File | null
   description: string
 }
 
-interface IProps extends ConnectedProps<typeof connector>{
-  // actions: typeof actions
+interface IProps extends ConnectedProps<typeof connector> {
   saveClicked: () => void
 }
 
@@ -107,9 +106,6 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-const connector = connect(
-  null,
-  mapDispatchToProps
-)
+const connector = connect(null, mapDispatchToProps)
 
 export default connector(AddPostForm)

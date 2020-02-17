@@ -1,3 +1,4 @@
+import { ActionTypes } from 'App/redux/types'
 import { RootState } from 'index'
 import React, { Component } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
@@ -5,8 +6,6 @@ import { bindActionCreators, Dispatch } from 'redux'
 
 import * as actions from '../../redux/actions'
 import Post, { IPost } from './Post'
-import { ActionTypes } from 'App/redux/types'
-
 
 interface IProps extends ConnectedProps<typeof connector> {
   posts: IPost[]
@@ -40,9 +39,6 @@ const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
-const connector = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)
+const connector = connect(mapStateToProps, mapDispatchToProps)
 
 export default connector(Posts)

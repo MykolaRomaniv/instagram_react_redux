@@ -58,8 +58,8 @@ const reducer = (
             : item
         }),
       }
-    // case actionTypes.ERROR:
-    //   return state;
+    case actionTypes.ERROR:
+      return state
     default:
       return state
   }

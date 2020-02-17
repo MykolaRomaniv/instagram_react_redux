@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
 import AddBoxIcon from '@material-ui/icons/AddBox'
-import Modal from '../UI/Modal'
+import React, { Component } from 'react'
 
-import classes from './Toolbar.module.scss'
 import instaLogo from '../../../assets/instagram.png'
 import AddPostForm from '../AddPostForm'
+import Modal from '../UI/Modal'
+import classes from './Toolbar.module.scss'
 
 class Toolbar extends Component {
   state = {

@@ -1,7 +1,7 @@
 import React from 'react'
 
-import classes from './Modal.module.scss'
 import Backdrop from '../Backdrop'
+import classes from './Modal.module.scss'
 
 interface IProps {
   show: boolean

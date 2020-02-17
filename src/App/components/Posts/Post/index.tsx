@@ -1,13 +1,13 @@
 import React from 'react'
 
-import classes from './Post.module.scss'
-import PostHeader from './PostHeader'
-import IconBtns from './IconBtns'
-import PostImage from './PostImage'
-import Comments from './Comments'
 import CommentInput from './CommentInput'
+import Comments from './Comments'
 import CreateDate from './CreatedDate'
+import IconBtns from './IconBtns'
+import classes from './Post.module.scss'
 import PostDescription from './PostDescription'
+import PostHeader from './PostHeader'
+import PostImage from './PostImage'
 
 /**
  * {
@@ -31,7 +31,7 @@ export interface INewPost {
   comments: string[]
 }
 
-export interface IPost extends INewPost{
+export interface IPost extends INewPost {
   id: number
   userName: string
   avatar: IImageUrl
