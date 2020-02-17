@@ -12,7 +12,7 @@ type State = Readonly<{
 }>
 
 type Props = {
-  actions?: any
+  actions?: typeof actions
   post: IPost
 }
 
@@ -23,7 +23,7 @@ class СommentInput extends Component<Props, State> {
 
   postCommentHandler = () => {
     if (this.state.comment) {
-      this.props.actions.addComment(this.props.post, this.state.comment)
+      this.props.actions!.addComment(this.props.post, this.state.comment)
     }
     this.setState({
       comment: '',

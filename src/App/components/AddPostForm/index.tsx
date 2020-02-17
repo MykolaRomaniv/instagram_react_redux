@@ -9,12 +9,12 @@ import * as actions from '../../redux/actions'
 import blobToDataURI from '../../services/blobToDataURI'
 
 interface IState {
-  photo: null | File
+  photo: File | null
   description: string
 }
 
 interface IProps {
-  actions?: any
+  actions?: typeof actions
   saveClicked: () => void
 }
 
@@ -40,9 +40,12 @@ class AddPostForm extends Component<IProps, IState> {
     if (this.state.photo) {
       blobToDataURI(this.state.photo)
         .then((res) =>
-          this.props.actions.addPost({
+          this.props.actions!.addPost({
+            likes: 0,
+            createdAt: new Date(),
             imageUrl: res,
             description: this.state.description,
+            comments: []
           }),
         )
         .catch((error) => {
@@ -70,7 +73,7 @@ class AddPostForm extends Component<IProps, IState> {
     return (
       <form className={classes.form} action="#">
         <label htmlFor="photo" className={classes.photoLabel}>
-          <CloudUploadIcon />{' '}
+          <CloudUploadIcon />
           <span>
             {this.state.photo ? this.state.photo.name : 'Choose a photo...'}
           </span>

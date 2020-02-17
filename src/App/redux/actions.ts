@@ -42,7 +42,10 @@ export const getPosts = () => (dispatch: any) => {
     })
 }
 
-export const deletePost = (postId: number) => (dispatch: any) => {
+export const deletePost = (postId: number | undefined) => (dispatch: any) => {
+  if(typeof postId === 'undefined') {
+    dispatch(errorNotify(`Can\`t delete post. Missing id`))
+  }
   axios
     .delete(`/posts/${postId}`)
     .then(() => {
@@ -59,14 +62,14 @@ export const deletePost = (postId: number) => (dispatch: any) => {
 }
 
 export const addPost = (post: IPost, postIndex = 0) => (dispatch: any) => {
-  const newPost = {
-    createAt: new Date(),
-    imageUrl: post.imageUrl,
-    likes: 0,
-    description: post.description,
-  }
+  // const newPost = {
+  //   createAt: new Date(),
+  //   imageUrl: post.imageUrl,
+  //   likes: 0,
+  //   description: post.description,
+  // }
   axios
-    .post('/posts', newPost)
+    .post('/posts', post)
     .then((res) => {
       dispatch({
         type: actionTypes.ADD_POST,

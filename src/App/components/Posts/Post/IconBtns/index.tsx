@@ -13,7 +13,7 @@ import { IPost } from '../index'
 
 interface IProps {
   post: IPost
-  actions?: any
+  actions?: typeof actions
 }
 
 interface IState {
@@ -35,7 +35,7 @@ class IconBtns extends Component<IProps, IState> {
 
   componentDidUpdate = () => {
     if (this.props.post.likes !== this.state.likes) {
-      this.props.actions.addLike(this.props.post, this.state.likes)
+      this.props.actions!.addLike(this.props.post, this.state.likes)
     }
   }
 

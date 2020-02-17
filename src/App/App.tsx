@@ -12,12 +12,12 @@ const App = (): JSX.Element => {
       <ToastContainer
         position="top-right"
         autoClose={5000}
-        hideProgressBar
+        hideProgressBar={true}
         newestOnTop={false}
-        closeOnClick
+        closeOnClick={true}
         rtl={false}
-        draggable
-        pauseOnHover
+        draggable={true}
+        pauseOnHover={true}
       />
       <Toolbar />
       <main className={classes.content}>

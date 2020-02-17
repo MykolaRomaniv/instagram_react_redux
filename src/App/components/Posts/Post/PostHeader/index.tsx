@@ -9,7 +9,7 @@ import { IPost } from '..'
 
 interface IProps {
   post: IPost
-  actions?: any
+  actions: typeof actions
 }
 
 const postHeader = (props: IProps): JSX.Element => {
