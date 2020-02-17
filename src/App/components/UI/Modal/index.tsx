@@ -6,7 +6,7 @@ import Backdrop from '../Backdrop'
 interface IProps {
   show: boolean
   modalClosed: () => void
-  children: any
+  children: React.ReactNode
 }
 
 const modal = (props: IProps): JSX.Element => {

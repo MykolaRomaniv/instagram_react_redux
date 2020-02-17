@@ -1,12 +1,13 @@
 import React, { Component, ChangeEvent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch} from 'redux'
 import { toast } from 'react-toastify'
 import CloudUploadIcon from '@material-ui/icons/CloudUpload'
 
 import classes from './AddPostForm.module.scss'
 import * as actions from '../../redux/actions'
 import blobToDataURI from '../../services/blobToDataURI'
+import { ActionTypes } from 'App/redux/types'
 
 interface IState {
   photo: File | null
@@ -102,7 +103,7 @@ class AddPostForm extends Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

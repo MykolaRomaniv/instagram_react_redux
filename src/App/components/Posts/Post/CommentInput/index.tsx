@@ -1,10 +1,11 @@
 import React, { Component, ChangeEvent } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 
 import classes from './CpmmentInput.module.scss'
 import * as actions from '../../../../redux/actions'
 import { IPost } from '..'
+import { ActionTypes } from 'App/redux/types'
 
 interface IState {
   comment: string
@@ -51,7 +52,7 @@ class СommentInput extends Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

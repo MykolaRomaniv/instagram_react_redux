@@ -1,15 +1,15 @@
 import React from 'react'
 import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined'
 import { connect, ConnectedProps } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 
 import classes from './PostHeader.module.scss'
 import * as actions from '../../../../redux/actions'
 import { IPost } from '..'
+import { ActionTypes } from 'App/redux/types'
 
 interface IProps extends ConnectedProps<typeof connector>{
   post: IPost
-  // actions: typeof actions
 }
 
 const postHeader = (props: IProps): JSX.Element => {
@@ -29,7 +29,7 @@ const postHeader = (props: IProps): JSX.Element => {
   )
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 

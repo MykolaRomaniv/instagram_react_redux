@@ -1,9 +1,19 @@
+import { INewPost, IPost } from 'App/components/Posts/Post'
+import { RootState } from 'index'
 import moment from 'moment'
 import { toast } from 'react-toastify'
-import axios from '../services/axios'
+import { Action } from 'redux'
+import { ThunkAction } from 'redux-thunk'
 
+import axios from '../services/axios'
 import * as actionTypes from './types'
-import { IPost, INewPost } from 'App/components/Posts/Post'
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>
 
 export const errorNotify = (errorMsg: string): actionTypes.ActionTypes => {
   toast.error(errorMsg)
@@ -15,7 +25,7 @@ export const errorNotify = (errorMsg: string): actionTypes.ActionTypes => {
   }
 }
 
-export const getPosts = () => (dispatch: any) => {
+export const getPosts = (): AppThunk => (dispatch) => {
   dispatch({
     type: actionTypes.LOADING_POSTS,
   })
@@ -41,7 +51,7 @@ export const getPosts = () => (dispatch: any) => {
     })
 }
 
-export const deletePost = (postId: number) => (dispatch: any) => {
+export const deletePost = (postId: number): AppThunk => (dispatch) => {
   axios
     .delete(`/posts/${postId}`)
     .then(() => {
@@ -57,7 +67,7 @@ export const deletePost = (postId: number) => (dispatch: any) => {
     })
 }
 
-export const addPost = (post: INewPost, postIndex = 0) => (dispatch: any) => {
+export const addPost = (post: INewPost, postIndex = 0): AppThunk => (dispatch) => {
   axios
     .post('/posts', post)
     .then((res) => {

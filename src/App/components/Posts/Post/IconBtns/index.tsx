@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, Dispatch } from 'redux'
 
 import classes from './IconBtns.module.scss'
 import likeIcon from '../../../../../assets/like.svg'
@@ -10,6 +10,7 @@ import shareIcon from '../../../../../assets/share.svg'
 import saveIcon from '../../../../../assets/save.svg'
 import * as actions from '../../../../redux/actions'
 import { IPost } from '../index'
+import { ActionTypes } from 'App/redux/types'
 
 interface IState {
   liked: boolean
@@ -71,7 +72,7 @@ class IconBtns extends Component<IProps, IState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
+const mapDispatchToProps = (dispatch: Dispatch<ActionTypes>) => ({
   actions: bindActionCreators(actions, dispatch),
 })
 
