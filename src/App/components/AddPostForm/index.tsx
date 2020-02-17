@@ -37,14 +37,17 @@ class AddPostForm extends Component<IProps, IState> {
   }
 
   saveClickedHandler = (): void => {
-    if (this.state.photo) {
-      blobToDataURI(this.state.photo)
+    const { photo, description } = this.state
+    const {actions, saveClicked} = this.props
+
+    if (photo) {
+      blobToDataURI(photo)
         .then((res) =>
-          this.props.actions.addPost({
+          actions.addPost({
             likes: 0,
             createdAt: new Date(),
             imageUrl: res,
-            description: this.state.description,
+            description: description,
             comments: [],
           }),
         )
@@ -58,7 +61,7 @@ class AddPostForm extends Component<IProps, IState> {
         .catch((error) => {
           toast.error(`Can\`t load file ${error}`)
         })
-      this.props.saveClicked()
+      saveClicked()
     } else {
       toast.error('Please add image')
     }
@@ -73,12 +76,14 @@ class AddPostForm extends Component<IProps, IState> {
   }
 
   render(): JSX.Element {
+    const { photo, description } = this.state
+
     return (
       <form className={classes.form} action="#">
         <label htmlFor="photo" className={classes.photoLabel}>
           <CloudUploadIcon />
           <span>
-            {this.state.photo ? this.state.photo.name : 'Choose a photo...'}
+            {photo ? photo.name : 'Choose a photo...'}
           </span>
         </label>
         <input
@@ -92,7 +97,7 @@ class AddPostForm extends Component<IProps, IState> {
           className={classes.description}
           placeholder="Description..."
           onChange={this.descriptionChangeHandler}
-          value={this.state.description}
+          value={description}
         />
         <button onClick={this.saveClickedHandler} className={classes.saveBtn}>
           Save

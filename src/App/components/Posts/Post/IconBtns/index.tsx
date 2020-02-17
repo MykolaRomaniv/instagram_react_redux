@@ -34,26 +34,32 @@ class IconBtns extends Component<IProps, IState> {
   }
 
   componentDidUpdate = () => {
-    if (this.props.post.likes !== this.state.likes) {
-      this.props.actions.addLike(this.props.post, this.state.likes)
+    const {post, actions} = this.props
+    const {likes} = this.state
+
+    if (post.likes !== likes) {
+      actions.addLike(post, likes)
     }
   }
 
   likeClikedHandler = () => {
+    const { liked, likes } = this.state
+
     this.setState({
-      liked: !this.state.liked,
-      likes: !this.state.liked ? this.state.likes + 1 : this.state.likes - 1,
+      liked: !liked,
+      likes: !liked ? likes + 1 : likes - 1,
     })
   }
 
   render(): JSX.Element {
+    const {liked, likes} = this.state
     return (
       <>
         <div className={classes.iconBtns}>
           <div>
             <img
               className={classes.heart}
-              src={this.state.liked ? likedIcon : likeIcon}
+              src={liked ? likedIcon : likeIcon}
               onClick={this.likeClikedHandler}
               alt="like"
             />
@@ -66,7 +72,7 @@ class IconBtns extends Component<IProps, IState> {
           </div>
           <img className={classes.iconBtn} src={saveIcon} alt="save" />
         </div>
-        <div className={classes.likeNumber}>{this.state.likes} likes</div>
+        <div className={classes.likeNumber}>{likes} likes</div>
       </>
     )
   }

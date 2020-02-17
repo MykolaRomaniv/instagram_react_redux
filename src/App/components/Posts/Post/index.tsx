@@ -28,7 +28,7 @@ export interface INewPost {
   imageUrl: IImageUrl
   likes: number
   description: string
-  comments: string[]
+  comments: string[] | string
 }
 
 export interface IPost extends INewPost {
@@ -37,9 +37,9 @@ export interface IPost extends INewPost {
   avatar: IImageUrl
 }
 
-type IProps = Readonly<{
+interface IProps {
   post: IPost
-}>
+}
 
 const Post = (props: IProps): JSX.Element => {
   return (

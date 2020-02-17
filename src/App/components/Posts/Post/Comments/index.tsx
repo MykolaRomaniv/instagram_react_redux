@@ -3,7 +3,7 @@ import React from 'react'
 import classes from './Comments.module.scss'
 
 interface IProps {
-  comments: string[]
+  comments: string[] | string
 }
 
 const comments = (props: IProps): JSX.Element => {

@@ -21,8 +21,11 @@ class СommentInput extends Component<IProps, IState> {
   }
 
   postCommentHandler = () => {
-    if (this.state.comment) {
-      this.props.actions.addComment(this.props.post, this.state.comment)
+    const { comment } = this.state
+    const {actions, post} = this.props
+
+    if (comment) {
+      actions.addComment(post, comment)
     }
     this.setState({
       comment: '',

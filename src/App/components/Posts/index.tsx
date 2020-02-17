@@ -17,10 +17,12 @@ class Posts extends Component<IProps, {}> {
   }
 
   render(): JSX.Element {
+    const { posts } = this.props
+
     return (
       <>
-        {this.props.posts && this.props.posts.length ? (
-          this.props.posts.map((post) => <Post key={post.id} post={post} />)
+        {posts && posts.length ? (
+          posts.map((post) => <Post key={post.id} post={post} />)
         ) : (
           <p>Loading.....</p>
         )}
