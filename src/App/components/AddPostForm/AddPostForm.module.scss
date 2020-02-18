@@ -1,19 +1,66 @@
 .form {
-    background: #fafafa;
+  background: #fafafa;
+  display: flex;
+  flex-flow: column;
+
+  .photoInput {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    &:focus + .photoLabel {
+      background-color: red;
+    }
+  }
+
+  .photoLabel {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    width: 60%;
+    margin: auto;
+    padding: 8px 0;
+    cursor: pointer;
     display: flex;
-    flex-flow: column;
+    justify-content: center;
 
-    .photo {
-        margin: 16px;
+    &:hover {
+      background-color: red;
     }
 
-    .description {
-        resize: none;
-        height: 100px;
-        margin: 16px;
+    span {
+      display: flex;
+      align-items: center;
     }
 
-    .saveBtn {
-        align-self: center;
+    & > * {
+      padding: 0 8px;
     }
+  }
+
+  .inputfile:focus + label,
+  .inputfile + label:hover {
+    background-color: red;
+  }
+
+  .description {
+    resize: none;
+    height: 100px;
+    margin: 16px;
+  }
+
+  .saveBtn {
+    align-self: center;
+  }
+  
+  @media (max-width: 500px) {
+    .photoLabel {
+      font-size: inherit;
+    }
+  }
 }
